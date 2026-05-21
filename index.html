@@ -3,367 +3,550 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IQ Test — Ukur Kecerdasanmu!</title>
-<meta name="description" content="Tes IQ online gratis! Jawab soal logika, pola, angka & verbal. Dapatkan skor IQ kamu sekarang.">
-<meta property="og:title" content="IQ Test Online — Berapa IQ Kamu?">
-<meta property="og:description" content="Tes IQ gratis! Soal logika, pola, angka & verbal. Hasil instan dengan kategori IQ lengkap.">
+<title>IQ Mu Berapa? — Tes IQ Online Gratis</title>
+<meta name="description" content="Tes IQ online gratis untuk anak, dewasa, dan orang tua. 36 soal standar internasional. Hasil instan dengan skor IQ lengkap!">
+<meta property="og:title" content="IQ Mu Berapa? — Tes IQ Online Gratis">
+<meta property="og:description" content="Tes IQ gratis untuk semua usia! Anak, Dewasa, Orang Tua. 36 soal standar internasional.">
 <meta property="og:type" content="website">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta property="og:url" content="https://iqmuberapa.pages.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IQ Mu Berapa? — Tes IQ Online Gratis">
+<meta name="twitter:description" content="Tes IQ gratis untuk semua usia! 36 soal standar internasional. Hasil instan!">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#06070f;
-  --surface:#0e1020;
-  --surface2:#161829;
-  --border:#1e2140;
-  --accent:#6c63ff;
-  --accent2:#ff6584;
-  --accent3:#43e97b;
-  --text:#e8e6ff;
-  --muted:#5a5880;
-  --font-head:'Syne',sans-serif;
-  --font-body:'DM Sans',sans-serif;
+  --bg:#07080f;
+  --surface:#0f1122;
+  --surface2:#171a2e;
+  --border:#1f2244;
+  --accent:#7c6fff;
+  --accent2:#ff6b81;
+  --accent3:#3ee8a0;
+  --warn:#f7c948;
+  --text:#eceaff;
+  --muted:#565880;
+  --font-h:'Syne',sans-serif;
+  --font-b:'DM Sans',sans-serif;
 }
-html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var(--font-body)}
-
-/* BG GRID */
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:15px}
 body::before{
-  content:'';position:fixed;inset:0;
-  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
-  background-size:48px 48px;opacity:.35;pointer-events:none;z-index:0;
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(124,111,255,.18) 0%,transparent 70%);
 }
-
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.2;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:44px 44px;
+}
 .screen{display:none;position:relative;z-index:1}
 .screen.active{display:block}
 
 /* ===== INTRO ===== */
-#s-intro{min-height:100vh;display:none;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1rem;text-align:center}
+#s-intro{min-height:100vh;display:none;flex-direction:column;align-items:center;padding:2.5rem 1.25rem 2rem;text-align:center}
 #s-intro.active{display:flex}
 
-.intro-badge{
+.logo-badge{
   display:inline-flex;align-items:center;gap:6px;
-  background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.35);
-  border-radius:99px;padding:5px 14px;font-size:12px;color:#a89fff;
-  font-family:var(--font-head);letter-spacing:.08em;text-transform:uppercase;
+  background:rgba(124,111,255,.12);border:1px solid rgba(124,111,255,.3);
+  border-radius:99px;padding:5px 16px;font-size:11px;
+  color:#a89fff;font-family:var(--font-h);letter-spacing:.1em;text-transform:uppercase;
   margin-bottom:1.5rem;
 }
-.intro-title{
-  font-family:var(--font-head);font-size:clamp(48px,10vw,96px);font-weight:800;
-  line-height:.95;letter-spacing:-.03em;margin-bottom:1rem;
-  background:linear-gradient(135deg,#fff 0%,#a89fff 50%,#ff6584 100%);
+.main-title{
+  font-family:var(--font-h);font-size:clamp(44px,12vw,100px);
+  font-weight:800;line-height:.9;letter-spacing:-.03em;
+  background:linear-gradient(135deg,#fff 0%,#b3abff 40%,#ff6b81 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:1rem;
 }
-.intro-sub{font-size:16px;color:var(--muted);max-width:420px;line-height:1.6;margin-bottom:2.5rem}
+.main-sub{font-size:15px;color:var(--muted);max-width:380px;line-height:1.65;margin-bottom:2rem}
 
-.stat-cards{display:flex;gap:12px;margin-bottom:2.5rem;flex-wrap:wrap;justify-content:center}
-.stat-card{
-  background:var(--surface);border:1px solid var(--border);border-radius:14px;
-  padding:.75rem 1.25rem;text-align:center;min-width:90px;
+/* Age cards */
+.age-title{font-family:var(--font-h);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.age-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:420px;margin:0 auto 2rem}
+.age-card{
+  background:var(--surface);border:2px solid var(--border);border-radius:18px;
+  padding:1.25rem .75rem;cursor:pointer;text-align:center;
+  transition:all .15s;-webkit-tap-highlight-color:transparent;
 }
-.stat-card .sv{font-family:var(--font-head);font-size:24px;font-weight:700;color:var(--accent)}
-.stat-card .sl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.age-card:active{transform:scale(.96)}
+.age-card.sel{border-color:var(--accent);background:rgba(124,111,255,.1)}
+.age-card .ac-emoji{font-size:32px;margin-bottom:.5rem;line-height:1}
+.age-card .ac-name{font-family:var(--font-h);font-size:14px;font-weight:700;color:var(--text)}
+.age-card .ac-range{font-size:11px;color:var(--muted);margin-top:3px}
+.age-card .ac-timer{font-size:10px;color:var(--accent);margin-top:4px;font-family:var(--font-h)}
 
-.btn-start-iq{
-  background:var(--accent);color:#fff;border:none;border-radius:14px;
-  padding:1rem 2.5rem;font-size:17px;font-weight:600;font-family:var(--font-head);
+.info-row{display:flex;gap:8px;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+.info-pill{
+  background:var(--surface);border:1px solid var(--border);border-radius:99px;
+  padding:5px 14px;font-size:12px;color:var(--muted);
+  display:flex;align-items:center;gap:5px;
+}
+.info-pill strong{color:var(--text);font-family:var(--font-h)}
+
+.btn-mulai{
+  background:var(--accent);color:#fff;border:none;border-radius:16px;
+  padding:1rem 2.75rem;font-size:17px;font-weight:700;font-family:var(--font-h);
   cursor:pointer;transition:all .15s;letter-spacing:.02em;
-  box-shadow:0 0 32px rgba(108,99,255,.4);
+  box-shadow:0 0 40px rgba(124,111,255,.45);
+  opacity:.4;pointer-events:none;
 }
-.btn-start-iq:hover{background:#5a52e0;transform:translateY(-2px);box-shadow:0 0 48px rgba(108,99,255,.6)}
-.btn-start-iq:active{transform:scale(.97)}
-
-.category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:360px;margin:0 auto 2rem}
-.cat-item{
-  background:var(--surface);border:1px solid var(--border);border-radius:12px;
-  padding:.65rem .75rem;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);
-}
-.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.btn-mulai.ready{opacity:1;pointer-events:all}
+.btn-mulai.ready:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(124,111,255,.65)}
+.btn-mulai.ready:active{transform:scale(.97)}
 
 /* ===== GAME ===== */
 #s-game{min-height:100vh;padding:1rem;display:none;flex-direction:column}
 #s-game.active{display:flex}
 
-.game-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.g-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.85rem;gap:6px}
 .g-back{
   background:var(--surface);border:1px solid var(--border);border-radius:99px;
-  padding:6px 14px;font-size:13px;color:var(--muted);cursor:pointer;
-  font-family:var(--font-body);transition:color .12s;
+  padding:5px 13px;font-size:12px;color:var(--muted);cursor:pointer;
+  font-family:var(--font-b);flex-shrink:0;
 }
-.g-back:hover{color:var(--text)}
-.g-num{font-family:var(--font-head);font-size:13px;color:var(--muted)}
-.g-score-live{
-  background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.3);
-  border-radius:99px;padding:4px 12px;font-size:13px;font-weight:600;
-  font-family:var(--font-head);color:#a89fff;
+.g-prog-wrap{flex:1;display:flex;flex-direction:column;gap:3px}
+.g-prog-track{height:4px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.g-prog-fill{height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.g-prog-lbl{font-size:10px;color:var(--muted);font-family:var(--font-h);text-align:right}
+.g-score-badge{
+  background:rgba(124,111,255,.15);border:1px solid rgba(124,111,255,.3);
+  border-radius:99px;padding:4px 11px;font-size:12px;font-weight:700;
+  font-family:var(--font-h);color:#b3abff;white-space:nowrap;flex-shrink:0;
 }
 
-/* timer */
-.timer-wrap{margin-bottom:1rem}
-.timer-track{height:5px;background:var(--surface2);border-radius:99px;overflow:hidden;margin-bottom:6px}
-.timer-fill{height:100%;border-radius:99px;background:var(--accent3);transition:width .1s linear}
-.timer-fill.warn{background:#f7c948}
-.timer-fill.danger{background:var(--accent2)}
-.timer-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.timer-row{display:flex;align-items:center;gap:8px;margin-bottom:.85rem}
+.t-track{flex:1;height:7px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.t-fill{height:100%;border-radius:99px;background:var(--accent3);transition:width .1s linear}
+.t-fill.warn{background:var(--warn)}
+.t-fill.danger{background:var(--accent2)}
+.t-num{font-size:13px;font-weight:600;font-family:var(--font-h);min-width:30px;color:var(--muted);text-align:right}
 
-/* question */
-.q-type-badge{
+.q-badge{
   display:inline-flex;align-items:center;gap:5px;
   background:var(--surface2);border:1px solid var(--border);
-  border-radius:99px;padding:3px 10px;font-size:11px;color:var(--muted);
-  font-family:var(--font-head);letter-spacing:.06em;text-transform:uppercase;
-  margin-bottom:.75rem;
+  border-radius:99px;padding:3px 11px;font-size:11px;color:var(--muted);
+  font-family:var(--font-h);letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:.65rem;
 }
-.q-box{
-  background:var(--surface);border:1px solid var(--border);border-radius:18px;
-  padding:1.5rem 1.25rem;margin-bottom:1rem;
+.q-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:1.5rem 1.25rem;margin-bottom:.85rem;
 }
-.q-main{font-family:var(--font-head);font-size:22px;font-weight:700;line-height:1.4;color:var(--text);text-align:center;margin-bottom:.5rem}
-.q-hint{font-size:13px;color:var(--muted);text-align:center}
+.q-text{
+  font-family:var(--font-h);font-size:20px;font-weight:700;
+  color:var(--text);line-height:1.45;text-align:center;
+}
+.q-sub{font-size:13px;color:var(--muted);text-align:center;margin-top:.5rem;line-height:1.5;font-style:italic}
 
-/* pattern display */
-.pattern-row{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  flex-wrap:wrap;margin:1rem 0;
-}
-.pattern-cell{
-  width:48px;height:48px;background:var(--surface2);border:1px solid var(--border);
-  border-radius:10px;display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--accent);
-}
-.pattern-cell.blank{border-color:var(--accent);color:var(--accent2);border-style:dashed}
-
-/* answers */
-.ans-wrap{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem}
+.ans-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.75rem}
 .ans-btn{
-  background:var(--surface);border:1.5px solid var(--border);border-radius:14px;
-  padding:1rem .75rem;cursor:pointer;text-align:center;
-  font-family:var(--font-head);font-size:18px;font-weight:600;color:var(--text);
-  transition:all .12s;min-height:64px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);border:2px solid var(--border);border-radius:14px;
+  padding:.85rem .65rem;cursor:pointer;text-align:center;
+  font-family:var(--font-h);font-size:16px;font-weight:600;color:var(--text);
+  transition:all .12s;min-height:60px;
+  display:flex;align-items:center;justify-content:center;line-height:1.3;
   -webkit-tap-highlight-color:transparent;
 }
 .ans-btn:hover:not(:disabled){background:var(--surface2);border-color:var(--accent)}
-.ans-btn:active:not(:disabled){transform:scale(.96)}
-.ans-btn.correct{background:rgba(67,233,123,.1);border-color:var(--accent3);color:var(--accent3)}
-.ans-btn.wrong{background:rgba(255,101,132,.1);border-color:var(--accent2);color:var(--accent2)}
-.ans-btn.reveal{background:rgba(247,201,72,.1);border-color:#f7c948;color:#f7c948}
+.ans-btn:active:not(:disabled){transform:scale(.95)}
+.ans-btn.correct{background:rgba(62,232,160,.1);border-color:var(--accent3);color:var(--accent3)}
+.ans-btn.wrong{background:rgba(255,107,129,.1);border-color:var(--accent2);color:var(--accent2)}
+.ans-btn.reveal{background:rgba(247,201,72,.1);border-color:var(--warn);color:var(--warn)}
 
-.fb-wrap{
-  border-radius:12px;padding:.65rem 1rem;text-align:center;
-  font-size:14px;font-weight:500;min-height:44px;
-  display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;
+.fb-box{
+  border-radius:12px;padding:.6rem 1rem;text-align:center;
+  font-size:14px;font-weight:500;min-height:42px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:.65rem;
 }
-.fb-ok{background:rgba(67,233,123,.1);color:var(--accent3)}
-.fb-no{background:rgba(255,101,132,.1);color:var(--accent2)}
-.fb-time{background:rgba(247,201,72,.1);color:#f7c948}
+.fb-ok{background:rgba(62,232,160,.1);color:var(--accent3)}
+.fb-no{background:rgba(255,107,129,.1);color:var(--accent2)}
+.fb-time{background:rgba(247,201,72,.1);color:var(--warn)}
 .fb-empty{background:transparent;color:transparent}
 
 .btn-next{
   display:block;width:100%;padding:.85rem;
   background:var(--accent);color:#fff;border:none;border-radius:14px;
-  font-size:16px;font-weight:600;font-family:var(--font-head);cursor:pointer;
+  font-size:16px;font-weight:700;font-family:var(--font-h);cursor:pointer;
   transition:all .12s;
 }
-.btn-next:active{background:#5a52e0;transform:scale(.98)}
+.btn-next:active{background:#6558e0;transform:scale(.98)}
 
 /* ===== RESULT ===== */
-#s-result{min-height:100vh;padding:1.5rem 1rem;display:none;flex-direction:column;align-items:center}
+#s-result{min-height:100vh;padding:1.5rem 1.25rem 2rem;display:none;flex-direction:column;align-items:center}
 #s-result.active{display:flex}
 
-.iq-circle{
-  width:160px;height:160px;border-radius:50%;
+.res-top-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(124,111,255,.12);border:1px solid rgba(124,111,255,.3);
+  border-radius:99px;padding:5px 14px;font-size:11px;
+  color:#a89fff;font-family:var(--font-h);letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:1.25rem;
+}
+.iq-ring{
+  width:170px;height:170px;border-radius:50%;
   border:3px solid var(--accent);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  margin:1.5rem auto 1rem;
-  background:radial-gradient(circle,rgba(108,99,255,.15) 0%,transparent 70%);
-  box-shadow:0 0 48px rgba(108,99,255,.3);
-  animation:pulse 2s ease-in-out infinite;
+  margin:0 auto 1.25rem;
+  background:radial-gradient(circle,rgba(124,111,255,.18) 0%,transparent 70%);
+  box-shadow:0 0 60px rgba(124,111,255,.35);
+  animation:glow 2.5s ease-in-out infinite;
 }
-@keyframes pulse{0%,100%{box-shadow:0 0 48px rgba(108,99,255,.3)}50%{box-shadow:0 0 80px rgba(108,99,255,.5)}}
-.iq-num{font-family:var(--font-head);font-size:56px;font-weight:800;color:#fff;line-height:1}
-.iq-lbl{font-size:12px;color:var(--accent);font-family:var(--font-head);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
-
-.iq-category{
-  font-family:var(--font-head);font-size:22px;font-weight:700;
-  text-align:center;margin-bottom:.4rem;
+@keyframes glow{
+  0%,100%{box-shadow:0 0 60px rgba(124,111,255,.35)}
+  50%{box-shadow:0 0 100px rgba(124,111,255,.6)}
 }
-.iq-desc{font-size:14px;color:var(--muted);text-align:center;max-width:320px;margin:0 auto 1.5rem;line-height:1.6}
+.iq-val{font-family:var(--font-h);font-size:60px;font-weight:800;color:#fff;line-height:1}
+.iq-tag{font-size:11px;color:var(--accent);font-family:var(--font-h);letter-spacing:.1em;text-transform:uppercase;margin-top:5px}
 
-/* IQ bar */
-.iq-bar-wrap{width:100%;max-width:400px;margin:0 auto 1.5rem}
-.iq-bar-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:4px;font-family:var(--font-head)}
-.iq-bar-track{height:12px;background:var(--surface2);border-radius:99px;overflow:hidden;position:relative}
-.iq-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#43e97b,#6c63ff,#ff6584);transition:width 1s ease}
-.iq-marker{position:absolute;top:-4px;width:3px;height:20px;background:#fff;border-radius:2px;transition:left 1s ease}
+.iq-cat{font-family:var(--font-h);font-size:24px;font-weight:800;text-align:center;margin-bottom:.35rem}
+.iq-level{
+  display:inline-flex;align-items:center;gap:5px;
+  border-radius:99px;padding:3px 12px;font-size:11px;font-family:var(--font-h);
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:.85rem;
+}
+.iq-desc{font-size:14px;color:var(--muted);text-align:center;max-width:320px;margin:0 auto 1.5rem;line-height:1.65}
 
-.stat-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+/* IQ scale bar */
+.scale-wrap{width:100%;max-width:400px;margin:0 auto 1.5rem}
+.scale-title{font-size:11px;color:var(--muted);font-family:var(--font-h);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem;text-align:center}
+.scale-bar{height:14px;background:var(--surface2);border-radius:99px;overflow:hidden;position:relative;margin-bottom:6px}
+.scale-fill{
+  height:100%;border-radius:99px;
+  background:linear-gradient(90deg,#3ee8a0 0%,#7c6fff 50%,#ff6b81 100%);
+  transition:width 1.2s cubic-bezier(.25,.46,.45,.94);
+}
+.scale-marker{
+  position:absolute;top:-3px;width:4px;height:20px;
+  background:#fff;border-radius:2px;
+  box-shadow:0 0 8px rgba(255,255,255,.6);
+  transition:left 1.2s cubic-bezier(.25,.46,.45,.94);
+}
+.scale-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);font-family:var(--font-h)}
+
+/* IQ category legend */
+.iq-legend{
   width:100%;max-width:400px;margin:0 auto 1.5rem;
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;
 }
-.stat-box{
+.legend-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.6rem 1rem;border-bottom:1px solid var(--border);font-size:12px;
+}
+.legend-row:last-child{border-bottom:none}
+.legend-row.active-row{background:rgba(124,111,255,.1)}
+.legend-left{display:flex;align-items:center;gap:8px}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.legend-name{font-family:var(--font-h);font-weight:600}
+.legend-range{color:var(--muted);font-size:11px}
+
+.stat-row2{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  width:100%;max-width:400px;margin:0 auto 1.25rem;
+}
+.stat-b{
   background:var(--surface);border:1px solid var(--border);border-radius:14px;
   padding:.85rem .5rem;text-align:center;
 }
-.stat-box .sv{font-family:var(--font-head);font-size:22px;font-weight:700}
-.stat-box .sl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
-.sv-ok{color:var(--accent3)}.sv-no{color:var(--accent2)}.sv-t{color:var(--accent)}
+.stat-b .sv{font-family:var(--font-h);font-size:22px;font-weight:700}
+.stat-b .sl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
 
-.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:400px;margin:0 auto}
-.btn-home2{
+.share-box{
+  width:100%;max-width:400px;margin:0 auto 1.25rem;
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  padding:1rem 1.25rem;
+}
+.share-lbl{font-size:11px;color:var(--muted);font-family:var(--font-h);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.6rem}
+.share-txt{font-family:var(--font-h);font-size:14px;font-weight:600;color:var(--text);line-height:1.6;white-space:pre-line}
+
+.btn-row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:400px;margin:0 auto}
+.btn-menu{
   padding:.85rem;background:var(--surface);border:1.5px solid var(--border);
-  border-radius:14px;font-size:14px;font-weight:600;font-family:var(--font-head);
+  border-radius:14px;font-size:14px;font-weight:700;font-family:var(--font-h);
   cursor:pointer;color:var(--text);transition:all .12s;
 }
-.btn-retry{
+.btn-ulang{
   padding:.85rem;background:var(--accent);color:#fff;border:none;
-  border-radius:14px;font-size:14px;font-weight:600;font-family:var(--font-head);
+  border-radius:14px;font-size:14px;font-weight:700;font-family:var(--font-h);
   cursor:pointer;transition:all .12s;
 }
-.btn-retry:active{background:#5a52e0}
-
-/* ===== SHARE CARD ===== */
-.share-card{
-  width:100%;max-width:400px;
-  background:var(--surface);border:1px solid var(--border);border-radius:18px;
-  padding:1.25rem;margin:0 auto 1.25rem;text-align:center;
-}
-.share-title{font-family:var(--font-head);font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem}
-.share-text{font-family:var(--font-head);font-size:17px;font-weight:700;color:var(--text);line-height:1.5}
+.btn-ulang:active{background:#6558e0}
 </style>
 </head>
 <body>
 
 <!-- ===== INTRO ===== -->
 <div id="s-intro" class="screen active">
-  <div class="intro-badge">🧠 IQ Test Online</div>
-  <h1 class="intro-title">Berapa<br>IQ-mu?</h1>
-  <p class="intro-sub">20 soal logika, pola angka, deret, dan penalaran. Hasil instan dengan skor IQ lengkap.</p>
+  <div class="logo-badge">🧠 IQ Test Online</div>
+  <h1 class="main-title">IQ Mu<br>Berapa?</h1>
+  <p class="main-sub">Tes IQ standar internasional. 36 soal, hasil instan. Pilih kategori usiamu!</p>
 
-  <div class="stat-cards">
-    <div class="stat-card"><div class="sv">20</div><div class="sl">Soal</div></div>
-    <div class="stat-card"><div class="sv">20s</div><div class="sl">Per Soal</div></div>
-    <div class="stat-card"><div class="sv">IQ</div><div class="sl">Score</div></div>
+  <p class="age-title">Pilih Kategori Usia</p>
+  <div class="age-cards">
+    <div class="age-card" onclick="pickAge('anak',this)">
+      <div class="ac-emoji">👦</div>
+      <div class="ac-name">Anak</div>
+      <div class="ac-range">7–12 tahun</div>
+      <div class="ac-timer">⏱ 30 dtk/soal</div>
+    </div>
+    <div class="age-card" onclick="pickAge('dewasa',this)">
+      <div class="ac-emoji">🧑</div>
+      <div class="ac-name">Dewasa</div>
+      <div class="ac-range">13–40 tahun</div>
+      <div class="ac-timer">⏱ 20 dtk/soal</div>
+    </div>
+    <div class="age-card" onclick="pickAge('ortu',this)">
+      <div class="ac-emoji">👴</div>
+      <div class="ac-name">Orang Tua</div>
+      <div class="ac-range">40+ tahun</div>
+      <div class="ac-timer">⏱ 25 dtk/soal</div>
+    </div>
   </div>
 
-  <div class="category-grid">
-    <div class="cat-item"><div class="cat-dot" style="background:#6c63ff"></div>Pola Angka</div>
-    <div class="cat-item"><div class="cat-dot" style="background:#43e97b"></div>Deret Logika</div>
-    <div class="cat-item"><div class="cat-dot" style="background:#ff6584"></div>Penalaran</div>
-    <div class="cat-item"><div class="cat-dot" style="background:#f7c948"></div>Spasial</div>
+  <div class="info-row">
+    <div class="info-pill">📝 <strong>36</strong> Soal</div>
+    <div class="info-pill">🎯 Standar <strong>Internasional</strong></div>
+    <div class="info-pill">⚡ Hasil <strong>Instan</strong></div>
   </div>
 
-  <button class="btn-start-iq" onclick="startIQ()">Mulai Tes IQ ▶</button>
+  <button class="btn-mulai" id="btn-mulai" onclick="startTest()">Mulai Tes ▶</button>
 </div>
 
 <!-- ===== GAME ===== -->
 <div id="s-game" class="screen">
-  <div class="game-top">
+  <div class="g-top">
     <button class="g-back" onclick="if(confirm('Keluar dari tes?'))goIntro()">← Keluar</button>
-    <span class="g-num" id="g-num">1 / 20</span>
-    <span class="g-score-live" id="g-score">0 poin</span>
+    <div class="g-prog-wrap">
+      <div class="g-prog-track"><div class="g-prog-fill" id="g-prog"></div></div>
+      <div class="g-prog-lbl" id="g-num">1 / 36</div>
+    </div>
+    <div class="g-score-badge" id="g-score">0 poin</div>
   </div>
-  <div class="timer-wrap">
-    <div class="timer-track"><div class="timer-fill" id="t-fill"></div></div>
-    <div class="timer-label"><span id="t-label">20s</span><span id="t-diff"></span></div>
+  <div class="timer-row">
+    <div class="t-track"><div class="t-fill" id="t-fill"></div></div>
+    <div class="t-num" id="t-num">20s</div>
   </div>
-  <div class="q-type-badge" id="q-type-badge">🔢 Pola Angka</div>
-  <div class="q-box">
-    <div class="q-main" id="q-main"></div>
-    <div class="pattern-row" id="pattern-row" style="display:none"></div>
-    <div class="q-hint" id="q-hint"></div>
+  <div class="q-badge" id="q-badge">🔢 Pola Angka</div>
+  <div class="q-card">
+    <div class="q-text" id="q-text"></div>
+    <div class="q-sub" id="q-sub"></div>
   </div>
-  <div class="ans-wrap" id="ans-wrap"></div>
-  <div class="fb-wrap fb-empty" id="fb"></div>
+  <div class="ans-grid" id="ans-grid"></div>
+  <div class="fb-box fb-empty" id="fb"></div>
   <button class="btn-next" id="btn-next" style="display:none" onclick="nextQ()">Soal Berikutnya →</button>
 </div>
 
 <!-- ===== RESULT ===== -->
 <div id="s-result" class="screen">
-  <div class="intro-badge">🧠 Hasil Tes IQ</div>
-  <div class="iq-circle">
-    <div class="iq-num" id="r-iq">0</div>
-    <div class="iq-lbl">IQ Score</div>
+  <div class="res-top-badge" id="r-age-badge">🧑 Dewasa</div>
+  <div class="iq-ring">
+    <div class="iq-val" id="r-iq">0</div>
+    <div class="iq-tag">IQ Score</div>
   </div>
-  <div class="iq-category" id="r-cat"></div>
+  <div class="iq-cat" id="r-cat"></div>
+  <div class="iq-level" id="r-level"></div>
   <div class="iq-desc" id="r-desc"></div>
 
-  <div class="iq-bar-wrap">
-    <div class="iq-bar-labels"><span>70</span><span>85</span><span>100</span><span>115</span><span>130</span><span>145</span></div>
-    <div class="iq-bar-track">
-      <div class="iq-bar-fill" id="r-bar" style="width:0%"></div>
-      <div class="iq-marker" id="r-marker" style="left:0%"></div>
+  <div class="scale-wrap">
+    <div class="scale-title">Posisi IQ Kamu</div>
+    <div class="scale-bar">
+      <div class="scale-fill" id="r-bar" style="width:0%"></div>
+      <div class="scale-marker" id="r-marker" style="left:0%"></div>
+    </div>
+    <div class="scale-labels">
+      <span>70</span><span>85</span><span>100</span><span>115</span><span>130</span><span>145+</span>
     </div>
   </div>
 
-  <div class="stat-grid">
-    <div class="stat-box"><div class="sv sv-ok" id="r-correct">0</div><div class="sl">Benar</div></div>
-    <div class="stat-box"><div class="sv sv-no" id="r-wrong">0</div><div class="sl">Salah</div></div>
-    <div class="stat-box"><div class="sv sv-t" id="r-time">0s</div><div class="sl">Waktu</div></div>
+  <div class="iq-legend" id="iq-legend"></div>
+
+  <div class="stat-row2">
+    <div class="stat-b"><div class="sv" style="color:var(--accent3)" id="r-ok">0</div><div class="sl">Benar</div></div>
+    <div class="stat-b"><div class="sv" style="color:var(--accent2)" id="r-no">0</div><div class="sl">Salah</div></div>
+    <div class="stat-b"><div class="sv" style="color:var(--accent)" id="r-time">0s</div><div class="sl">Waktu</div></div>
   </div>
 
-  <div class="share-card">
-    <div class="share-title">📤 Bagikan Hasilmu</div>
-    <div class="share-text" id="r-share"></div>
+  <div class="share-box">
+    <div class="share-lbl">📤 Bagikan Hasilmu</div>
+    <div class="share-txt" id="r-share"></div>
   </div>
 
-  <div class="btn-row">
-    <button class="btn-home2" onclick="goIntro()">🏠 Menu</button>
-    <button class="btn-retry" onclick="startIQ()">Ulangi Tes ↺</button>
+  <div class="btn-row2">
+    <button class="btn-menu" onclick="goIntro()">🏠 Menu</button>
+    <button class="btn-ulang" onclick="startTest()">Ulangi Tes ↺</button>
   </div>
 </div>
 
 <script>
-const QS = [
-  // Pola angka
-  {type:'🔢 Pola Angka',q:'2, 4, 8, 16, ?',hint:'Temukan polanya',a:['24','32','28','30'],c:1},
-  {type:'🔢 Pola Angka',q:'1, 1, 2, 3, 5, 8, ?',hint:'Deret Fibonacci',a:['11','12','13','14'],c:2},
-  {type:'🔢 Pola Angka',q:'3, 6, 11, 18, 27, ?',hint:'+3, +5, +7, +9...',a:['36','37','38','39'],c:2},
-  {type:'🔢 Pola Angka',q:'100, 50, 25, 12.5, ?',hint:'Dibagi berapa?',a:['6','6.25','5','7'],c:1},
-  {type:'🔢 Pola Angka',q:'7, 14, 28, 56, ?',hint:'Dikalikan berapa?',a:['96','112','100','108'],c:1},
-  // Deret logika
-  {type:'🧩 Deret Logika',q:'A, C, E, G, ?',hint:'Huruf-huruf yang dilewati',a:['H','I','J','K'],c:1},
-  {type:'🧩 Deret Logika',q:'Z, X, V, T, ?',hint:'Mundur 2 huruf',a:['R','S','Q','P'],c:0},
-  {type:'🧩 Deret Logika',q:'1, 4, 9, 16, 25, ?',hint:'Bilangan kuadrat',a:['30','36','32','35'],c:1},
-  {type:'🧩 Deret Logika',q:'2, 6, 12, 20, 30, ?',hint:'n×(n+1)',a:['40','42','44','46'],c:1},
-  {type:'🧩 Deret Logika',q:'5, 10, 20, 40, ?',hint:'Kelipatan 2',a:['60','70','80','90'],c:2},
-  // Penalaran
-  {type:'💡 Penalaran',q:'Jika semua A adalah B, dan semua B adalah C, maka?',hint:'Silogisme logika',a:['Semua C adalah A','Semua A adalah C','Tidak ada hubungan','Sebagian A adalah C'],c:1},
-  {type:'💡 Penalaran',q:'Ayah dari ayahku adalah?',hint:'Hubungan keluarga',a:['Paman','Kakak','Kakek','Abang'],c:2},
-  {type:'💡 Penalaran',q:'3 jam sebelum pukul 15.00 adalah?',hint:'Hitung mundur',a:['11.00','12.00','13.00','14.00'],c:1},
-  {type:'💡 Penalaran',q:'Buku ada di rak. Rak ada di kamar. Kamar ada di rumah. Maka buku ada di?',hint:'Transitif',a:['Rak saja','Kamar saja','Rumah','Toko'],c:2},
-  {type:'💡 Penalaran',q:'Jika PANAS = DINGIN, SIANG = MALAM, maka HIDUP = ?',hint:'Antonim',a:['Sehat','Mati','Tidur','Bahagia'],c:1},
-  // Matematika logika
-  {type:'🔣 Matematika',q:'Berapa nilai x? 2x + 6 = 18',hint:'Aljabar dasar',a:['4','5','6','7'],c:2},
-  {type:'🔣 Matematika',q:'Jika 5 + 3 = 28, 9 + 1 = 810, maka 7 + 2 = ?',hint:'Pola tersembunyi: a×b dan a-b',a:['59','14','95','49'],c:1},
-  {type:'🔣 Matematika',q:'Rata-rata dari 10, 20, 30, 40, 50 adalah?',hint:'Jumlah dibagi banyak data',a:['25','30','35','40'],c:1},
-  {type:'🔣 Matematika',q:'1/2 + 1/4 + 1/8 = ?',hint:'Samakan penyebut',a:['3/4','7/8','5/8','1'],c:1},
-  {type:'🔣 Matematika',q:'Sebuah persegi panjang 8×6. Luasnya?',hint:'p × l',a:['28','42','48','56'],c:2},
-];
+// ===== SOAL =====
+const BANK = {
+  anak: [
+    // Pola Angka
+    {t:'🔢 Pola Angka',q:'2, 4, 6, 8, ?',h:'Tambah berapa tiap langkah?',a:['9','10','11','12'],c:1},
+    {t:'🔢 Pola Angka',q:'1, 2, 4, 8, ?',h:'Dikalikan berapa?',a:['12','14','16','18'],c:2},
+    {t:'🔢 Pola Angka',q:'10, 20, 30, 40, ?',h:'Pola kelipatan 10',a:['45','48','50','55'],c:2},
+    {t:'🔢 Pola Angka',q:'5, 10, 15, 20, ?',h:'Tambah 5 terus',a:['22','23','24','25'],c:3},
+    {t:'🔢 Pola Angka',q:'3, 6, 9, 12, ?',h:'Kelipatan 3',a:['13','14','15','16'],c:2},
+    {t:'🔢 Pola Angka',q:'1, 3, 5, 7, ?',h:'Bilangan ganjil berurutan',a:['8','9','10','11'],c:1},
+    {t:'🔢 Pola Angka',q:'100, 90, 80, 70, ?',h:'Berkurang berapa?',a:['55','60','65','68'],c:1},
+    {t:'🔢 Pola Angka',q:'2, 4, 8, 16, ?',h:'Setiap angka dikali 2',a:['24','28','30','32'],c:3},
+    {t:'🔢 Pola Angka',q:'1, 4, 9, 16, ?',h:'1², 2², 3², 4², ...?',a:['20','22','25','28'],c:2},
+    {t:'🔢 Pola Angka',q:'50, 40, 31, 23, ?',h:'Berkurang 10, 9, 8, ...?',a:['14','15','16','17'],c:2},
+    // Logika Sederhana
+    {t:'💡 Logika',q:'Ayam punya 2 kaki. Sapi punya 4 kaki. 3 ayam + 1 sapi = berapa kaki?',h:'Hitung satu per satu',a:['8','9','10','12'],c:2},
+    {t:'💡 Logika',q:'Jika hari ini Senin, 3 hari lagi hari apa?',h:'Hitung dari Senin',a:['Rabu','Kamis','Jumat','Sabtu'],c:1},
+    {t:'💡 Logika',q:'Mana yang TIDAK termasuk buah?',h:'Perhatikan jenisnya',a:['Mangga','Wortel','Jeruk','Apel'],c:1},
+    {t:'💡 Logika',q:'Ada 10 kelereng. Diberikan 3, lalu diberi lagi 5. Sisa berapa?',h:'10 - 3 + 5',a:['10','11','12','13'],c:2},
+    {t:'💡 Logika',q:'Buku ada di atas meja. Meja ada di kamar. Buku ada di mana?',h:'Ikuti urutannya',a:['Toko','Meja saja','Kamar','Luar rumah'],c:2},
+    {t:'💡 Logika',q:'Sebuah kotak punya 6 sisi. 2 kotak punya berapa sisi?',h:'Kalikan',a:['8','10','12','14'],c:2},
+    // Deret Huruf
+    {t:'🔤 Deret Huruf',q:'A, B, C, D, ?',h:'Urutan alfabet',a:['D','E','F','G'],c:1},
+    {t:'🔤 Deret Huruf',q:'Z, Y, X, W, ?',h:'Mundur satu-satu',a:['T','U','V','S'],c:2},
+    {t:'🔤 Deret Huruf',q:'A, C, E, G, ?',h:'Loncat satu huruf',a:['H','I','J','K'],c:1},
+    {t:'🔤 Deret Huruf',q:'B, D, F, H, ?',h:'Huruf genap alfabet',a:['I','J','K','L'],c:1},
+    // Matematika Dasar
+    {t:'🔣 Matematika',q:'Berapa hasil 15 × 4?',h:'Perkalian',a:['55','60','65','70'],c:1},
+    {t:'🔣 Matematika',q:'72 ÷ 8 = ?',h:'Pembagian',a:['7','8','9','10'],c:2},
+    {t:'🔣 Matematika',q:'Luas persegi dengan sisi 7 cm?',h:'sisi × sisi',a:['28','42','49','56'],c:2},
+    {t:'🔣 Matematika',q:'1/2 + 1/2 = ?',h:'Pecahan',a:['1/4','1/2','1','2'],c:2},
+    {t:'🔣 Matematika',q:'Nilai 25% dari 80 adalah?',h:'25% = 1/4',a:['15','20','25','30'],c:1},
+    // Penalaran Visual
+    {t:'🎨 Penalaran',q:'Benda apa yang bentuknya bulat sempurna?',h:'Pilih yang paling tepat',a:['Kotak','Bola','Segitiga','Kubus'],c:1},
+    {t:'🎨 Penalaran',q:'Kucing : Anak kucing = Sapi : ?',h:'Hubungan induk-anak',a:['Kambing','Domba','Anak sapi','Kuda'],c:2},
+    {t:'🎨 Penalaran',q:'Mana yang PALING besar?',h:'Bandingkan ukuran',a:['Semut','Kucing','Gajah','Tikus'],c:2},
+    {t:'🎨 Penalaran',q:'Pensil : Menulis = Pisau : ?',h:'Alat dan fungsinya',a:['Makan','Memotong','Memasak','Menggambar'],c:1},
+    {t:'🎨 Penalaran',q:'Apa lawan kata dari PANAS?',h:'Antonim',a:['Terang','Gelap','Dingin','Basah'],c:2},
+    // Ingatan & Konsentrasi
+    {t:'🧩 Konsentrasi',q:'3 + 4 × 2 = ?',h:'Kali dulu baru tambah',a:['11','12','13','14'],c:0},
+    {t:'🧩 Konsentrasi',q:'Berapa angka yang hilang? 2, _, 6, 8, 10',h:'Pola genap',a:['3','4','5','7'],c:1},
+    {t:'🧩 Konsentrasi',q:'Angka berapa yang bukan kelipatan 3? 6, 9, 11, 12',h:'Cek satu per satu',a:['6','9','11','12'],c:2},
+    {t:'🧩 Konsentrasi',q:'Ibu membeli 3 lusin telur. Berapa butir telurnya?',h:'1 lusin = 12',a:['24','30','36','48'],c:2},
+    {t:'🧩 Konsentrasi',q:'Jika 1 minggu = 7 hari, berapa hari dalam 4 minggu?',h:'7 × 4',a:['21','24','28','30'],c:2},
+    {t:'🧩 Konsentrasi',q:'Sebuah jam menunjukkan pukul 3.00. Berapa derajat sudut jarum panjang & pendek?',h:'Jarum panjang di 12, pendek di 3',a:['60°','90°','120°','180°'],c:1},
+  ],
+
+  dewasa: [
+    // Pola Angka
+    {t:'🔢 Pola Angka',q:'2, 6, 12, 20, 30, ?',h:'Selisih: +4, +6, +8, +10...',a:['40','42','44','46'],c:1},
+    {t:'🔢 Pola Angka',q:'1, 1, 2, 3, 5, 8, 13, ?',h:'Fibonacci: jumlah 2 angka sebelumnya',a:['18','20','21','24'],c:2},
+    {t:'🔢 Pola Angka',q:'3, 7, 13, 21, 31, ?',h:'Selisih: +4, +6, +8, +10...',a:['40','42','43','45'],c:1},
+    {t:'🔢 Pola Angka',q:'729, 243, 81, 27, ?',h:'Dibagi berapa?',a:['6','7','8','9'],c:3},
+    {t:'🔢 Pola Angka',q:'2, 3, 5, 8, 13, 21, ?',h:'Mirip Fibonacci tapi tidak sama',a:['30','32','34','36'],c:2},
+    {t:'🔢 Pola Angka',q:'4, 9, 16, 25, 36, ?',h:'Bilangan kuadrat',a:['42','47','49','52'],c:2},
+    {t:'🔢 Pola Angka',q:'1, 8, 27, 64, ?',h:'Bilangan kubik: 1³, 2³, 3³...',a:['100','115','125','130'],c:2},
+    {t:'🔢 Pola Angka',q:'17, 14, 11, 8, ?',h:'Berkurang berapa tiap langkah?',a:['3','4','5','6'],c:2},
+    {t:'🔢 Pola Angka',q:'2, 5, 11, 23, 47, ?',h:'×2 lalu +1',a:['90','93','95','97'],c:2},
+    {t:'🔢 Pola Angka',q:'100, 50, 25, 12.5, ?',h:'Dibagi 2 terus',a:['5','6','6.25','7'],c:2},
+    // Deret Logika
+    {t:'🧩 Deret Logika',q:'A, C, F, J, ?',h:'Selisih: +2, +3, +4, +5...',a:['N','O','P','Q'],c:1},
+    {t:'🧩 Deret Logika',q:'Z, X, U, Q, ?',h:'Mundur: 2, 3, 4, 5...',a:['K','L','M','N'],c:2},
+    {t:'🧩 Deret Logika',q:'AZ, BY, CX, DW, ?',h:'Maju & mundur bersamaan',a:['EU','EV','FV','FU'],c:1},
+    // Penalaran
+    {t:'💡 Penalaran',q:'Semua dokter adalah manusia. Sebagian manusia adalah jujur. Maka?',h:'Silogisme parsial',a:['Semua dokter jujur','Sebagian dokter mungkin jujur','Tidak ada dokter yang jujur','Semua manusia adalah dokter'],c:1},
+    {t:'💡 Penalaran',q:'MOBIL : BENSIN = MANUSIA : ?',h:'Sumber energi/bahan bakar',a:['Udara','Makanan','Air','Tidur'],c:1},
+    {t:'💡 Penalaran',q:'Jika P > Q, Q > R, dan R > S, maka?',h:'Transitif',a:['S > P','P > S','Q > P','R > P'],c:1},
+    {t:'💡 Penalaran',q:'5 orang bisa menyelesaikan pekerjaan dalam 8 hari. Berapa hari jika 10 orang?',h:'Berbanding terbalik',a:['2','3','4','5'],c:2},
+    {t:'💡 Penalaran',q:'Andi lebih tua dari Budi. Budi lebih tua dari Cici. Siapa yang termuda?',h:'Urutkan',a:['Andi','Budi','Cici','Tidak bisa ditentukan'],c:2},
+    {t:'💡 Penalaran',q:'Jika RUMAH = 75416, maka MURA = ?',h:'Cocokkan kode huruf',a:['7541','7514','7451','4517'],c:1},
+    {t:'💡 Penalaran',q:'3 jam setelah 2 jam sebelum pukul 14.00 adalah?',h:'Hitung mundur dulu, lalu maju',a:['12.00','13.00','14.00','15.00'],c:3},
+    // Matematika
+    {t:'🔣 Matematika',q:'Jika 5 + 3 = 28, 9 + 1 = 810, maka 7 + 2 = ?',h:'a×b dan a-b',a:['59','14','95','49'],c:1},
+    {t:'🔣 Matematika',q:'Berapa nilai x? 3x - 7 = 2x + 5',h:'Pindahkan variabel',a:['10','11','12','13'],c:2},
+    {t:'🔣 Matematika',q:'Rata-rata 5 angka adalah 20. Jika 4 angka adalah 15,18,22,25, angka ke-5 adalah?',h:'Total = 100, kurangi 4 angka',a:['18','20','22','24'],c:1},
+    {t:'🔣 Matematika',q:'Sebuah toko diskon 30%. Harga asal Rp200.000. Harga setelah diskon?',h:'200.000 × 70%',a:['Rp120.000','Rp130.000','Rp140.000','Rp150.000'],c:2},
+    {t:'🔣 Matematika',q:'Luas lingkaran dengan jari-jari 7 cm? (π=22/7)',h:'π × r²',a:['144 cm²','148 cm²','152 cm²','154 cm²'],c:3},
+    // Spasial & Visual
+    {t:'🎯 Spasial',q:'Sebuah kubus dipotong jadi 2 bagian sama. Berapa permukaannya?',h:'Kubus normal 6 sisi, potong = tambah 2',a:['7','8','10','12'],c:2},
+    {t:'🎯 Spasial',q:'Berapa banyak segitiga di dalam segitiga besar yang dibagi 4 bagian sama?',h:'Hitung semua kombinasi',a:['4','5','6','7'],c:1},
+    // Memori & Konsentrasi
+    {t:'🧠 Konsentrasi',q:'Manakah yang BERBEDA? 256, 144, 121, 100, 81, 72',h:'Bilangan kuadrat sempurna',a:['121','100','81','72'],c:3},
+    {t:'🧠 Konsentrasi',q:'Berapa angka prima antara 10 dan 20?',h:'Bilangan prima: hanya bisa dibagi 1 dan dirinya',a:['2','3','4','5'],c:2},
+    {t:'🧠 Konsentrasi',q:'2⁸ = ?',h:'2 dipangkat 8',a:['128','256','512','1024'],c:1},
+    {t:'🧠 Konsentrasi',q:'Jika hari Senin tanggal 1, hari apa tanggal 15?',h:'14 hari = 2 minggu',a:['Senin','Selasa','Rabu','Kamis'],c:0},
+    {t:'🧠 Konsentrasi',q:'Sebuah roda berputar 3 kali per detik. Dalam 2 menit berapa putaran?',h:'3 × 60 × 2',a:['180','240','360','420'],c:2},
+    {t:'🧠 Konsentrasi',q:'Jika 3 kucing bisa menangkap 3 tikus dalam 3 menit, berapa kucing untuk 100 tikus dalam 100 menit?',h:'Pikirkan rasionya',a:['1','3','10','100'],c:1},
+    {t:'🧠 Konsentrasi',q:'Bilangan mana yang merupakan hasil 12²?',h:'12 dikali 12',a:['124','134','144','154'],c:2},
+  ],
+
+  ortu: [
+    // Pola Angka (lebih ramah)
+    {t:'🔢 Pola Angka',q:'5, 10, 15, 20, 25, ?',h:'Tambah 5 setiap langkah',a:['28','30','32','35'],c:1},
+    {t:'🔢 Pola Angka',q:'2, 4, 8, 16, ?',h:'Dikali 2 terus',a:['24','28','30','32'],c:3},
+    {t:'🔢 Pola Angka',q:'100, 90, 80, 70, ?',h:'Berkurang 10',a:['55','60','65','68'],c:1},
+    {t:'🔢 Pola Angka',q:'1, 4, 9, 16, ?',h:'1×1, 2×2, 3×3...',a:['20','22','25','28'],c:2},
+    {t:'🔢 Pola Angka',q:'3, 6, 11, 18, 27, ?',h:'Selisih: +3, +5, +7, +9...',a:['36','37','38','39'],c:2},
+    {t:'🔢 Pola Angka',q:'48, 24, 12, 6, ?',h:'Dibagi 2',a:['2','3','4','5'],c:1},
+    {t:'🔢 Pola Angka',q:'7, 11, 15, 19, ?',h:'Selisih tetap +4',a:['21','22','23','24'],c:2},
+    // Penalaran Verbal
+    {t:'📖 Verbal',q:'Apa antonim dari kata HEMAT?',h:'Lawan kata',a:['Murah','Boros','Kikir','Mahal'],c:1},
+    {t:'📖 Verbal',q:'DOKTER : RUMAH SAKIT = GURU : ?',h:'Tempat bekerja',a:['Buku','Sekolah','Kantor','Perpustakaan'],c:1},
+    {t:'📖 Verbal',q:'Sinonim dari kata BIJAKSANA adalah?',h:'Persamaan kata',a:['Berani','Kuat','Arif','Cerdas'],c:2},
+    {t:'📖 Verbal',q:'PANAS : API = DINGIN : ?',h:'Sumber dari apa?',a:['Hujan','Es','Angin','Air'],c:1},
+    {t:'📖 Verbal',q:'Mana kalimat yang paling tepat secara logika?',h:'Pilih yang masuk akal',a:['Semua ikan bisa terbang','Semua burung bisa terbang','Semua hewan bisa berenang','Semua manusia bisa berlari'],c:1},
+    {t:'📖 Verbal',q:'Kata mana yang TIDAK satu kelompok dengan yang lain?',h:'Cari yang berbeda jenis',a:['Merah','Biru','Kuning','Lingkaran'],c:3},
+    // Logika Kehidupan
+    {t:'💡 Logika',q:'Jika sekarang pukul 10.30, 2,5 jam lagi pukul berapa?',h:'Tambah 2 jam 30 menit',a:['12.30','12.45','13.00','13.15'],c:2},
+    {t:'💡 Logika',q:'Seseorang berjalan 3 km ke Utara, lalu 4 km ke Timur. Jarak dari titik awal?',h:'Teorema Pythagoras: 3² + 4²',a:['5 km','6 km','7 km','8 km'],c:0},
+    {t:'💡 Logika',q:'Jika semua A adalah B, dan X bukan B, maka?',h:'Silogisme',a:['X adalah A','X bukan A','X mungkin A','Tidak bisa ditentukan'],c:1},
+    {t:'💡 Logika',q:'Ayah 30 tahun lebih tua dari anak. 5 tahun lagi umur ayah 3× umur anak. Berapa umur anak sekarang?',h:'Buat persamaan',a:['10','12','15','20'],c:0},
+    {t:'💡 Logika',q:'Toko A diskon 20%, Toko B diskon 30%. Barang sama harga Rp100.000. Selisih harga?',h:'Hitung masing-masing',a:['Rp5.000','Rp10.000','Rp15.000','Rp20.000'],c:1},
+    {t:'💡 Logika',q:'Berapa tahun dari tahun 1985 ke tahun 2026?',h:'Kurangi',a:['39','40','41','42'],c:2},
+    // Matematika Terapan
+    {t:'🔣 Matematika',q:'Harga 5 kg beras Rp75.000. Harga 8 kg beras?',h:'Cari harga per kg dulu',a:['Rp100.000','Rp110.000','Rp120.000','Rp130.000'],c:2},
+    {t:'🔣 Matematika',q:'Bunga tabungan 6% per tahun. Simpan Rp5.000.000, bunga setahun?',h:'5.000.000 × 6%',a:['Rp250.000','Rp300.000','Rp350.000','Rp400.000'],c:1},
+    {t:'🔣 Matematika',q:'Kecepatan 60 km/jam. Jarak 150 km. Berapa lama?',h:'Waktu = Jarak ÷ Kecepatan',a:['2 jam','2.5 jam','3 jam','3.5 jam'],c:1},
+    {t:'🔣 Matematika',q:'Rata-rata nilai ujian: 75, 80, 85, 90. Nilai rata-ratanya?',h:'Jumlah ÷ banyak data',a:['80','82.5','85','87.5'],c:1},
+    {t:'🔣 Matematika',q:'Sebuah ruangan 6m × 4m. Luas lantai yang perlu dipasang keramik?',h:'p × l',a:['20 m²','22 m²','24 m²','26 m²'],c:2},
+    // Kebijaksanaan & Analogi
+    {t:'🌿 Analogi',q:'MATAHARI : SIANG = BULAN : ?',h:'Hubungan waktu',a:['Bintang','Malam','Gelap','Langit'],c:1},
+    {t:'🌿 Analogi',q:'BENIH : POHON = TELUR : ?',h:'Proses tumbuh/berkembang',a:['Sarang','Burung','Terbang','Cangkang'],c:1},
+    {t:'🌿 Analogi',q:'LAPAR : MAKAN = HAUS : ?',h:'Kebutuhan dan solusinya',a:['Tidur','Makan','Minum','Istirahat'],c:2},
+    {t:'🌿 Analogi',q:'AIR : IKAN = UDARA : ?',h:'Tempat hidup',a:['Angin','Awan','Burung','Langit'],c:2},
+    {t:'🌿 Analogi',q:'PENA : MENULIS = KACAMATA : ?',h:'Fungsi alat',a:['Melihat','Membaca','Belajar','Bekerja'],c:0},
+    // Konsentrasi
+    {t:'🧠 Konsentrasi',q:'Berapa sisi pada 4 segitiga + 2 persegi?',h:'Segitiga 3 sisi, Persegi 4 sisi',a:['18','20','22','24'],c:1},
+    {t:'🧠 Konsentrasi',q:'Angka mana yang bisa dibagi 2 DAN 3? 14, 18, 22, 26',h:'Bisa dibagi 6',a:['14','18','22','26'],c:1},
+    {t:'🧠 Konsentrasi',q:'Perjalanan pulang pergi 30 km. Berapa km satu arah?',h:'Bagi 2',a:['10','12','15','20'],c:2},
+    {t:'🧠 Konsentrasi',q:'Jika 1 tahun = 12 bulan, berapa bulan dalam 3,5 tahun?',h:'12 × 3.5',a:['36','38','40','42'],c:3},
+    {t:'🧠 Konsentrasi',q:'Ada 5 orang dalam satu keluarga. Berapa total jabat tangan jika semua saling berjabat?',h:'n×(n-1)÷2',a:['8','9','10','12'],c:2},
+  ]
+};
 
 const IQ_TABLE = [
-  {min:20,max:20,iq:145,cat:'Genius',desc:'Luar biasa! Kamu termasuk kelompok genius. Kemampuan kognitifmu sangat jauh di atas rata-rata.',color:'#6c63ff'},
-  {min:18,max:19,iq:135,cat:'Sangat Superior',desc:'Kemampuan intelektual kamu sangat tinggi. Top 2% populasi dunia!',color:'#6c63ff'},
-  {min:16,max:17,iq:125,cat:'Superior',desc:'Kamu memiliki kecerdasan di atas rata-rata yang signifikan. Sangat bagus!',color:'#43e97b'},
-  {min:14,max:15,iq:115,cat:'Di Atas Rata-rata',desc:'Kecerdasanmu berada di atas rata-rata. Terus asah kemampuanmu!',color:'#43e97b'},
-  {min:11,max:13,iq:105,cat:'Rata-rata Atas',desc:'Kamu berada tepat di atas garis rata-rata populasi umum.',color:'#f7c948'},
-  {min:8,max:10,iq:95,cat:'Rata-rata',desc:'Kecerdasanmu berada di kisaran rata-rata populasi umum.',color:'#f7c948'},
-  {min:5,max:7,iq:85,cat:'Di Bawah Rata-rata',desc:'Terus belajar dan latihan. Kecerdasan bisa diasah dengan usaha!',color:'#ff6584'},
-  {min:0,max:4,iq:75,cat:'Perlu Latihan',desc:'Jangan menyerah! Dengan latihan rutin, kemampuanmu pasti meningkat.',color:'#ff6584'},
+  {min:33,max:36,iq:145,cat:'Genius',desc:'Luar biasa! Kamu termasuk kelompok genius. Kemampuan kognitifmu sangat jauh di atas rata-rata populasi.',color:'#b3abff',bg:'rgba(124,111,255,.15)'},
+  {min:30,max:32,iq:135,cat:'Sangat Superior',desc:'Kemampuan intelektualmu sangat tinggi. Kamu termasuk top 2% populasi dunia!',color:'#9b8fff',bg:'rgba(124,111,255,.12)'},
+  {min:27,max:29,iq:125,cat:'Superior',desc:'Kecerdasanmu signifikan di atas rata-rata. Kemampuan analitis dan logikamu sangat baik.',color:'#3ee8a0',bg:'rgba(62,232,160,.12)'},
+  {min:23,max:26,iq:115,cat:'Di Atas Rata-rata',desc:'Kecerdasanmu berada di atas rata-rata populasi umum. Terus asah kemampuanmu!',color:'#3ee8a0',bg:'rgba(62,232,160,.10)'},
+  {min:18,max:22,iq:105,cat:'Rata-rata Atas',desc:'Kamu berada tepat di atas garis rata-rata. Kemampuan berpikir yang baik.',color:'#f7c948',bg:'rgba(247,201,72,.10)'},
+  {min:13,max:17,iq:95,cat:'Rata-rata',desc:'Kecerdasanmu berada di kisaran rata-rata populasi umum. Ini normal dan baik-baik saja.',color:'#f7c948',bg:'rgba(247,201,72,.08)'},
+  {min:8,max:12,iq:85,cat:'Di Bawah Rata-rata',desc:'Terus belajar dan berlatih. Kecerdasan adalah kemampuan yang bisa diasah!',color:'#ff6b81',bg:'rgba(255,107,129,.10)'},
+  {min:0,max:7,iq:75,cat:'Perlu Latihan',desc:'Jangan menyerah! Dengan latihan rutin setiap hari, kemampuanmu pasti meningkat pesat.',color:'#ff6b81',bg:'rgba(255,107,129,.12)'},
 ];
 
-const TLIMIT = 20;
-let qi=0, score=0, correct=0, wrong=0, totalTime=0, timer=null, answered=false, timeLeft=0;
-let shuffled=[];
+const AGE_LABELS = {anak:'👦 Anak (7–12 tahun)',dewasa:'🧑 Dewasa (13–40 tahun)',ortu:'👴 Orang Tua (40+ tahun)'};
+const TLIMIT = {anak:30,dewasa:20,ortu:25};
 
-function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+let mode='',shuffled=[],qi=0,score=0,correct=0,wrong=0,totalTime=0,timer=null,answered=false,timeLeft=0;
+
+function pickAge(m, el){
+  mode=m;
+  document.querySelectorAll('.age-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('btn-mulai').classList.add('ready');
+}
+
 function show(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
-
 function goIntro(){clearInterval(timer);show('s-intro')}
 
-function startIQ(){
-  shuffled=shuffle(QS).slice(0,20);
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+
+function startTest(){
+  if(!mode)return;
+  shuffled=shuffle(BANK[mode]).slice(0,36);
   qi=0;score=0;correct=0;wrong=0;totalTime=0;
   show('s-game');renderQ();
 }
@@ -371,38 +554,35 @@ function startIQ(){
 function renderQ(){
   answered=false;
   const q=shuffled[qi];
-  document.getElementById('g-num').textContent=`${qi+1} / 20`;
+  const total=shuffled.length;
+  document.getElementById('g-num').textContent=`${qi+1} / ${total}`;
+  document.getElementById('g-prog').style.width=`${(qi/total)*100}%`;
   document.getElementById('g-score').textContent=`${score} poin`;
-  document.getElementById('q-type-badge').textContent=q.type;
-  document.getElementById('q-main').textContent=q.q;
-  document.getElementById('q-hint').textContent=q.hint;
+  document.getElementById('q-badge').textContent=q.t;
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('q-sub').textContent=q.h;
   document.getElementById('btn-next').style.display='none';
-  const fb=document.getElementById('fb');fb.textContent='';fb.className='fb-wrap fb-empty';
+  const fb=document.getElementById('fb');fb.textContent='';fb.className='fb-box fb-empty';
 
-  // pattern row - hide for now (text-based questions)
-  document.getElementById('pattern-row').style.display='none';
-
-  // shuffle answers
   const sh=q.a.map((a,i)=>({a,i})).sort(()=>Math.random()-.5);
-  document.getElementById('ans-wrap').innerHTML=sh.map(({a,i})=>
+  document.getElementById('ans-grid').innerHTML=sh.map(({a,i})=>
     `<button class="ans-btn" onclick="checkAns(this,${i},${q.c})">${a}</button>`
   ).join('');
-
   startTimer();
 }
 
 function startTimer(){
-  clearInterval(timer);timeLeft=TLIMIT;
-  const fill=document.getElementById('t-fill'),lbl=document.getElementById('t-label');
-  fill.style.width='100%';fill.className='timer-fill';lbl.textContent=timeLeft+'s';
-  document.getElementById('t-diff').textContent=shuffled[qi].type;
+  clearInterval(timer);
+  const lim=TLIMIT[mode];timeLeft=lim;
+  const fill=document.getElementById('t-fill'),num=document.getElementById('t-num');
+  fill.style.width='100%';fill.className='t-fill';num.textContent=timeLeft+'s';
   timer=setInterval(()=>{
     timeLeft--;totalTime++;
-    lbl.textContent=timeLeft+'s';
-    const p=(timeLeft/TLIMIT)*100;
+    num.textContent=timeLeft+'s';
+    const p=(timeLeft/lim)*100;
     fill.style.width=p+'%';
-    if(p<=30)fill.className='timer-fill danger';
-    else if(p<=60)fill.className='timer-fill warn';
+    if(p<=20)fill.className='t-fill danger';
+    else if(p<=50)fill.className='t-fill warn';
     if(timeLeft<=0){clearInterval(timer);timeUp();}
   },1000);
 }
@@ -412,30 +592,30 @@ function timeUp(){
   const q=shuffled[qi];
   document.querySelectorAll('.ans-btn').forEach(b=>{
     b.disabled=true;
-    const o=parseInt(b.getAttribute('onclick').match(/\d+/g)[0]);
+    const o=parseInt(b.getAttribute('onclick').match(/\d+/)[0]);
     if(o===q.c)b.className='ans-btn reveal';
   });
   const fb=document.getElementById('fb');
-  fb.textContent='⏰ Waktu habis! Jawaban benar ditandai.';fb.className='fb-wrap fb-time';
+  fb.textContent='⏰ Waktu habis! Jawaban benar ditandai.';fb.className='fb-box fb-time';
   wrong++;document.getElementById('btn-next').style.display='block';
 }
 
 function checkAns(btn,orig,ci){
-  if(answered)return;answered=true;clearInterval(timer);totalTime+=TLIMIT-timeLeft;
+  if(answered)return;answered=true;clearInterval(timer);totalTime+=TLIMIT[mode]-timeLeft;
   const ok=orig===ci;
   document.querySelectorAll('.ans-btn').forEach(b=>{
     b.disabled=true;
-    const o=parseInt(b.getAttribute('onclick').match(/\d+/g)[0]);
+    const o=parseInt(b.getAttribute('onclick').match(/\d+/)[0]);
     if(o===ci)b.className='ans-btn correct';
   });
   const fb=document.getElementById('fb');
   if(ok){
-    const pts=Math.max(5, Math.round((timeLeft/TLIMIT)*20));
+    const pts=Math.max(5,Math.round((timeLeft/TLIMIT[mode])*20)+5);
     score+=pts;correct++;
-    fb.textContent=`✅ Benar! +${pts} poin`;fb.className='fb-wrap fb-ok';
+    fb.textContent=`✅ Benar! +${pts} poin`;fb.className='fb-box fb-ok';
   } else {
     btn.className='ans-btn wrong';wrong++;
-    fb.textContent='❌ Salah. Jawaban benar ditandai.';fb.className='fb-wrap fb-no';
+    fb.textContent='❌ Salah. Jawaban benar ditandai hijau.';fb.className='fb-box fb-no';
   }
   document.getElementById('g-score').textContent=`${score} poin`;
   document.getElementById('btn-next').style.display='block';
@@ -443,46 +623,57 @@ function checkAns(btn,orig,ci){
 
 function nextQ(){
   qi++;
-  if(qi>=20)showResult();
+  if(qi>=shuffled.length)showResult();
   else renderQ();
 }
 
 function showResult(){
   clearInterval(timer);
-  // Calculate IQ
   const row=IQ_TABLE.find(r=>correct>=r.min&&correct<=r.max)||IQ_TABLE[IQ_TABLE.length-1];
   const iq=row.iq;
 
-  document.getElementById('r-iq').textContent=iq;
+  document.getElementById('r-age-badge').textContent=AGE_LABELS[mode];
   document.getElementById('r-cat').textContent=row.cat;
   document.getElementById('r-cat').style.color=row.color;
+  document.getElementById('r-level').textContent=`IQ ${iq}`;
+  document.getElementById('r-level').style.cssText=`color:${row.color};background:${row.bg};border:1px solid ${row.color}33`;
   document.getElementById('r-desc').textContent=row.desc;
-  document.getElementById('r-correct').textContent=correct;
-  document.getElementById('r-wrong').textContent=20-correct;
+  document.getElementById('r-ok').textContent=correct;
+  document.getElementById('r-no').textContent=36-correct;
   document.getElementById('r-time').textContent=totalTime+'s';
 
-  // IQ bar (range 70-145)
-  const pct=Math.min(100,Math.max(0,((iq-70)/(145-70))*100));
+  // IQ bar
+  const pct=Math.min(98,Math.max(2,((iq-70)/(145-70))*100));
   setTimeout(()=>{
     document.getElementById('r-bar').style.width=pct+'%';
-    document.getElementById('r-marker').style.left=`calc(${pct}% - 1.5px)`;
-  },300);
+    document.getElementById('r-marker').style.left=`calc(${pct}% - 2px)`;
+  },400);
+
+  // Legend
+  const legend=document.getElementById('iq-legend');
+  legend.innerHTML=IQ_TABLE.map(r=>`
+    <div class="legend-row${r.iq===iq?' active-row':''}">
+      <div class="legend-left">
+        <div class="legend-dot" style="background:${r.color}"></div>
+        <span class="legend-name" style="color:${r.iq===iq?r.color:'var(--text)'}">${r.cat}</span>
+      </div>
+      <span class="legend-range">IQ ${r.iq} · ${r.min}–${r.max} benar</span>
+    </div>
+  `).join('');
 
   // Share text
+  const modeLabel={anak:'Anak',dewasa:'Dewasa',ortu:'Orang Tua'};
   document.getElementById('r-share').textContent=
-    `🧠 Skor IQ saya: ${iq} (${row.cat})\n✅ ${correct}/20 benar dalam ${totalTime}s\nCoba juga di gentonggame.pages.dev`;
+    `🧠 Skor IQ saya: ${iq} (${row.cat})\n📊 Mode: ${modeLabel[mode]} · ${correct}/36 benar\n⏱ Waktu: ${totalTime} detik\n🔗 Coba juga: iqmuberapa.pages.dev`;
 
   show('s-result');
 
   // Animate IQ number
-  let cur=70;
-  const target=iq;
-  const step=Math.ceil((target-cur)/30);
+  let cur=70;const step=Math.ceil((iq-70)/40);
   const anim=setInterval(()=>{
-    cur+=step;
-    if(cur>=target){cur=target;clearInterval(anim);}
+    cur+=step;if(cur>=iq){cur=iq;clearInterval(anim);}
     document.getElementById('r-iq').textContent=cur;
-  },30);
+  },25);
 }
 </script>
 </body>
