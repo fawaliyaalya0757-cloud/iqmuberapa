@@ -13,6 +13,7 @@
 <meta name="twitter:title" content="IQ Mu Berapa? — Tes IQ Online Gratis">
 <meta name="twitter:description" content="Tes IQ gratis untuk semua usia! 36 soal standar internasional. Hasil instan!">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -135,10 +136,10 @@ body::after{
   border-radius:20px;padding:1.5rem 1.25rem;margin-bottom:.85rem;
 }
 .q-text{
-  font-family:var(--font-h);font-size:20px;font-weight:700;
-  color:var(--text);line-height:1.45;text-align:center;
+  font-family:var(--font-h);font-size:26px;font-weight:700;
+  color:#ffffff;line-height:1.45;text-align:center;
 }
-.q-sub{font-size:13px;color:var(--muted);text-align:center;margin-top:.5rem;line-height:1.5;font-style:italic}
+.q-sub{font-size:14px;color:#9b96cc;text-align:center;margin-top:.6rem;line-height:1.5;font-style:italic;font-weight:500}
 
 .ans-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:.75rem}
 .ans-btn{
@@ -156,14 +157,17 @@ body::after{
 .ans-btn.reveal{background:rgba(247,201,72,.1);border-color:var(--warn);color:var(--warn)}
 
 .fb-box{
-  border-radius:12px;padding:.6rem 1rem;text-align:center;
-  font-size:14px;font-weight:500;min-height:42px;
-  display:flex;align-items:center;justify-content:center;margin-bottom:.65rem;
+  border-radius:14px;padding:.85rem 1.1rem;text-align:left;
+  font-size:14px;font-weight:500;min-height:48px;
+  display:flex;flex-direction:column;gap:4px;justify-content:center;margin-bottom:.65rem;
+  border:1.5px solid transparent;
 }
-.fb-ok{background:rgba(62,232,160,.1);color:var(--accent3)}
-.fb-no{background:rgba(255,107,129,.1);color:var(--accent2)}
-.fb-time{background:rgba(247,201,72,.1);color:var(--warn)}
-.fb-empty{background:transparent;color:transparent}
+.fb-box .fb-main{font-size:15px;font-weight:700;font-family:var(--font-h)}
+.fb-box .fb-explain{font-size:13px;opacity:.9;line-height:1.5}
+.fb-ok{background:rgba(62,232,160,.12);color:#3ee8a0;border-color:rgba(62,232,160,.35)}
+.fb-no{background:rgba(255,107,129,.12);color:#ff8fa0;border-color:rgba(255,107,129,.35)}
+.fb-time{background:rgba(247,201,72,.12);color:#f7c948;border-color:rgba(247,201,72,.35)}
+.fb-empty{background:transparent;color:transparent;border-color:transparent}
 
 .btn-next{
   display:block;width:100%;padding:.85rem;
@@ -272,6 +276,49 @@ body::after{
   cursor:pointer;transition:all .12s;
 }
 .btn-ulang:active{background:#6558e0}
+
+/* ===== SHARE OVERLAY ===== */
+#share-overlay{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
+  flex-direction:column;align-items:center;justify-content:center;padding:1.25rem;
+}
+#share-overlay.open{display:flex}
+.share-card-wrap{
+  position:relative;width:100%;max-width:420px;border-radius:22px;overflow:hidden;
+  box-shadow:0 0 80px rgba(124,111,255,.5);margin-bottom:1rem;
+}
+#share-canvas-img{width:100%;display:block;border-radius:22px}
+.share-overlay-title{
+  font-family:var(--font-h);font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  color:#a89fff;margin-bottom:1rem;text-align:center;
+}
+.share-btns{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;max-width:420px;margin-bottom:.75rem;
+}
+.share-btn{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:.75rem .5rem;cursor:pointer;transition:all .15s;
+  font-family:var(--font-h);font-size:10px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;
+  -webkit-tap-highlight-color:transparent;
+}
+.share-btn:active{transform:scale(.95);border-color:var(--accent)}
+.share-btn .sb-icon{font-size:22px;line-height:1}
+.share-btn.wa{border-color:rgba(37,211,102,.3);color:#25d366}
+.share-btn.tw{border-color:rgba(29,155,240,.3);color:#1d9bf0}
+.share-btn.dl{border-color:rgba(62,232,160,.3);color:#3ee8a0}
+.btn-close-share{
+  background:transparent;border:1px solid var(--border);border-radius:99px;
+  padding:8px 24px;font-size:13px;font-family:var(--font-h);color:var(--muted);cursor:pointer;
+}
+.btn-share-main{
+  padding:.85rem;background:linear-gradient(135deg,var(--accent),#a855f7);color:#fff;border:none;
+  border-radius:14px;font-size:14px;font-weight:700;font-family:var(--font-h);
+  cursor:pointer;transition:all .12s;width:100%;max-width:400px;margin:0 auto;display:block;
+  box-shadow:0 0 30px rgba(124,111,255,.4);
+}
+.btn-share-main:active{transform:scale(.98)}
 </style>
 </head>
 <body>
@@ -376,10 +423,188 @@ body::after{
     <button class="btn-menu" onclick="goIntro()">🏠 Menu</button>
     <button class="btn-ulang" onclick="startTest()">Ulangi Tes ↺</button>
   </div>
+  <button class="btn-share-main" onclick="openShareOverlay()" style="margin-top:12px">📤 Bagikan Hasil ke Sosial Media</button>
+</div>
+
+<!-- ===== SHARE OVERLAY ===== -->
+<div id="share-overlay">
+  <div class="share-overlay-title">📸 Bagikan Hasilmu</div>
+  <div class="share-card-wrap">
+    <img id="share-canvas-img" src="" alt="Hasil IQ">
+  </div>
+  <div class="share-btns">
+    <button class="share-btn wa" onclick="shareToWA()">
+      <span class="sb-icon">💬</span>WhatsApp
+    </button>
+    <button class="share-btn tw" onclick="shareToTwitter()">
+      <span class="sb-icon">🐦</span>Twitter/X
+    </button>
+    <button class="share-btn dl" onclick="downloadShare()">
+      <span class="sb-icon">⬇️</span>Simpan
+    </button>
+  </div>
+  <button class="btn-close-share" onclick="closeShareOverlay()">✕ Tutup</button>
 </div>
 
 <script>
-// ===== SOAL =====
+// ===== SHARE FUNCTIONS =====
+let _shareBlob = null;
+let _shareText = '';
+
+function buildShareCard(callback) {
+  const row = IQ_TABLE.find(r => correct >= r.min && correct <= r.max) || IQ_TABLE[IQ_TABLE.length - 1];
+  const iq = row.iq;
+  const modeLabel = {anak:'Anak',dewasa:'Dewasa',ortu:'Orang Tua'};
+
+  // Create off-screen canvas share card
+  const W = 800, H = 420;
+  const canvas = document.createElement('canvas');
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // Background - dark gradient matching site
+  const bg = ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#07080f');
+  bg.addColorStop(1,'#0f1122');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0,0,W,H);
+
+  // Grid overlay
+  ctx.strokeStyle = 'rgba(31,34,68,0.6)';
+  ctx.lineWidth = 1;
+  for(let x=0;x<W;x+=44){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=44){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+
+  // Top glow
+  const glow = ctx.createRadialGradient(W/2,-50,10,W/2,-50,400);
+  glow.addColorStop(0,'rgba(124,111,255,0.22)');
+  glow.addColorStop(1,'transparent');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0,0,W,H);
+
+  // Left section - big IQ number
+  ctx.save();
+  // IQ ring
+  const cx=200, cy=220, r=130;
+  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
+  const ringGlow = ctx.createRadialGradient(cx,cy,0,cx,cy,r);
+  ringGlow.addColorStop(0,'rgba(124,111,255,0.22)');
+  ringGlow.addColorStop(1,'transparent');
+  ctx.fillStyle=ringGlow;ctx.fill();
+  ctx.beginPath();ctx.arc(cx,cy,r,0,Math.PI*2);
+  ctx.strokeStyle=row.color;ctx.lineWidth=3;ctx.stroke();
+  // IQ number
+  ctx.font='bold 90px Syne,sans-serif';
+  ctx.fillStyle='#ffffff';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText(iq,cx,cy-10);
+  ctx.font='13px Syne,sans-serif';
+  ctx.fillStyle=row.color;
+  ctx.letterSpacing='4px';
+  ctx.fillText('IQ SCORE',cx,cy+60);
+  ctx.restore();
+
+  // Right section
+  const rx = 390;
+  // Site badge
+  ctx.font='12px Syne,sans-serif';
+  ctx.fillStyle='rgba(168,159,255,0.8)';
+  ctx.textAlign='left';ctx.textBaseline='top';
+  ctx.fillText('🧠 IQMUBERAPA.PAGES.DEV',rx,40);
+
+  // Category
+  ctx.font='bold 36px Syne,sans-serif';
+  ctx.fillStyle=row.color;
+  ctx.fillText(row.cat,rx,90);
+
+  // Description (wrap)
+  ctx.font='15px DM Sans,sans-serif';
+  ctx.fillStyle='rgba(236,234,255,0.7)';
+  const words=row.desc.split(' ');let line='',ly=148;
+  for(let w of words){
+    const test=line+w+' ';
+    if(ctx.measureText(test).width>370&&line){
+      ctx.fillText(line.trim(),rx,ly);line=w+' ';ly+=22;
+    } else {line=test;}
+  }
+  ctx.fillText(line.trim(),rx,ly);
+
+  // Stats
+  const stats=[
+    {label:'Benar',val:`${correct}/36`,color:'#3ee8a0'},
+    {label:'Mode',val:modeLabel[mode],color:'#7c6fff'},
+    {label:'Waktu',val:`${totalTime}s`,color:'#f7c948'},
+  ];
+  stats.forEach((s,i)=>{
+    const sx=rx+i*130, sy=240;
+    ctx.fillStyle='rgba(15,17,34,0.8)';
+    roundRect(ctx,sx,sy,115,70,10);ctx.fill();
+    ctx.font='bold 22px Syne,sans-serif';
+    ctx.fillStyle=s.color;ctx.textAlign='center';
+    ctx.fillText(s.val,sx+57,sy+20);
+    ctx.font='11px Syne,sans-serif';
+    ctx.fillStyle='rgba(86,88,128,1)';
+    ctx.fillText(s.label.toUpperCase(),sx+57,sy+50);
+  });
+
+  // Bottom tagline
+  ctx.font='13px Syne,sans-serif';
+  ctx.fillStyle='rgba(86,88,128,0.9)';
+  ctx.textAlign='left';
+  ctx.fillText('Tes IQ Gratis · 36 Soal · Standar Internasional',rx,340);
+
+  // CTA
+  ctx.font='bold 14px Syne,sans-serif';
+  ctx.fillStyle='rgba(124,111,255,0.9)';
+  ctx.fillText('👉 Coba sekarang!',rx,368);
+
+  canvas.toBlob(blob=>{
+    _shareBlob=blob;
+    callback(canvas.toDataURL('image/png'));
+  },'image/png');
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r);ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h);ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r);ctx.arcTo(x,y,x+r,y,r);ctx.closePath();
+}
+
+function openShareOverlay(){
+  const overlay=document.getElementById('share-overlay');
+  overlay.classList.add('open');
+  const img=document.getElementById('share-canvas-img');
+  img.src='';
+  buildShareCard(dataUrl=>{img.src=dataUrl;});
+  const row=IQ_TABLE.find(r=>correct>=r.min&&correct<=r.max)||IQ_TABLE[IQ_TABLE.length-1];
+  const modeLabel={anak:'Anak',dewasa:'Dewasa',ortu:'Orang Tua'};
+  _shareText=`🧠 IQ saya: ${row.iq} (${row.cat})\n📊 Mode: ${modeLabel[mode]} · ${correct}/36 benar\n⏱ Waktu: ${totalTime} detik\n🔗 Coba kamu juga: iqmuberapa.pages.dev`;
+}
+
+function closeShareOverlay(){
+  document.getElementById('share-overlay').classList.remove('open');
+}
+
+function shareToWA(){
+  const url='https://wa.me/?text='+encodeURIComponent(_shareText);
+  window.open(url,'_blank');
+}
+
+function shareToTwitter(){
+  const url='https://twitter.com/intent/tweet?text='+encodeURIComponent(_shareText);
+  window.open(url,'_blank');
+}
+
+function downloadShare(){
+  if(!_shareBlob)return;
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(_shareBlob);
+  a.download='hasil-iq-saya.png';
+  a.click();
+}
+
 const BANK = {
   anak: [
     // Pola Angka
@@ -590,19 +815,23 @@ function startTimer(){
 function timeUp(){
   if(answered)return;answered=true;
   const q=shuffled[qi];
+  const correctAnswer=q.a[q.c];
   document.querySelectorAll('.ans-btn').forEach(b=>{
     b.disabled=true;
     const o=parseInt(b.getAttribute('onclick').match(/\d+/)[0]);
     if(o===q.c)b.className='ans-btn reveal';
   });
   const fb=document.getElementById('fb');
-  fb.textContent='⏰ Waktu habis! Jawaban benar ditandai.';fb.className='fb-box fb-time';
+  fb.innerHTML=`<span class="fb-main">⏰ Waktu habis!</span><span class="fb-explain">💡 ${q.h} → Jawaban benar: <strong>${correctAnswer}</strong></span>`;
+  fb.className='fb-box fb-time';
   wrong++;document.getElementById('btn-next').style.display='block';
 }
 
 function checkAns(btn,orig,ci){
   if(answered)return;answered=true;clearInterval(timer);totalTime+=TLIMIT[mode]-timeLeft;
   const ok=orig===ci;
+  const q=shuffled[qi];
+  const correctAnswer=q.a[ci];
   document.querySelectorAll('.ans-btn').forEach(b=>{
     b.disabled=true;
     const o=parseInt(b.getAttribute('onclick').match(/\d+/)[0]);
@@ -612,10 +841,12 @@ function checkAns(btn,orig,ci){
   if(ok){
     const pts=Math.max(5,Math.round((timeLeft/TLIMIT[mode])*20)+5);
     score+=pts;correct++;
-    fb.textContent=`✅ Benar! +${pts} poin`;fb.className='fb-box fb-ok';
+    fb.innerHTML=`<span class="fb-main">✅ Benar! +${pts} poin</span><span class="fb-explain">💡 ${q.h} → Jawaban: <strong>${correctAnswer}</strong></span>`;
+    fb.className='fb-box fb-ok';
   } else {
     btn.className='ans-btn wrong';wrong++;
-    fb.textContent='❌ Salah. Jawaban benar ditandai hijau.';fb.className='fb-box fb-no';
+    fb.innerHTML=`<span class="fb-main">❌ Salah!</span><span class="fb-explain">💡 ${q.h} → Jawaban benar: <strong>${correctAnswer}</strong></span>`;
+    fb.className='fb-box fb-no';
   }
   document.getElementById('g-score').textContent=`${score} poin`;
   document.getElementById('btn-next').style.display='block';
