@@ -1,307 +1,489 @@
-
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IQ Test — Ukur Kecerdasanmu!</title>
+<meta name="description" content="Tes IQ online gratis! Jawab soal logika, pola, angka & verbal. Dapatkan skor IQ kamu sekarang.">
+<meta property="og:title" content="IQ Test Online — Berapa IQ Kamu?">
+<meta property="og:description" content="Tes IQ gratis! Soal logika, pola, angka & verbal. Hasil instan dengan kategori IQ lengkap.">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-.hk { background: #0a0a0a; padding: 1.5rem; font-family: 'Courier New', monospace; color: #00ff41; }
-.hk * { font-family: 'Courier New', monospace; }
-.hk-topbar { display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; border-bottom: 1px solid #00ff4133; padding-bottom: 12px; }
-.hk-logo { width: 30px; height: 30px; border: 1px solid #00ff41; display: flex; align-items: center; justify-content: center; }
-.hk-logo i { color: #00ff41; font-size: 15px; }
-.hk-title { font-size: 15px; color: #00ff41; letter-spacing: .1em; }
-.hk-title span { color: #444; }
-.hk-cursor { display: inline-block; width: 7px; height: 13px; background: #00ff41; vertical-align: middle; animation: blink 1s step-end infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-.api-config { background: #0f0f0f; border: 1px solid #00ff4133; padding: 12px 14px; margin-bottom: 1.25rem; }
-.api-config-title { font-size: 10px; color: #00ff4199; letter-spacing: .12em; margin-bottom: 10px; }
-.api-config-title::before { content: '// '; color: #00ff4144; }
-.api-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.api-row:last-child { margin-bottom: 0; }
-.api-label { font-size: 11px; color: #00ff4188; white-space: nowrap; min-width: 90px; }
-.api-row input { flex: 1; background: #0a0a0a; border: none; border-bottom: 1px solid #00ff4144; color: #00ff41; font-size: 12px; padding: 5px 4px; outline: none; caret-color: #00ff41; border-radius: 0; }
-.api-row input::placeholder { color: #00ff4133; }
-.api-row input:focus { border-bottom-color: #00ff41; }
-.api-status { font-size: 10px; padding: 2px 7px; border: 1px solid; display: inline-block; letter-spacing: .06em; }
-.st-set { border-color: #00ff4166; color: #00ff41; }
-.st-unset { border-color: #44444466; color: #444; }
-.hk-input-row { display: flex; gap: 8px; margin-bottom: 1.5rem; align-items: center; }
-.hk-prompt { color: #00ff41; font-size: 13px; white-space: nowrap; }
-.hk-input-row input { flex: 1; background: #0a0a0a; border: none; border-bottom: 1px solid #00ff4166; color: #00ff41; font-size: 13px; padding: 6px 4px; outline: none; caret-color: #00ff41; border-radius: 0; }
-.hk-input-row input::placeholder { color: #00ff4133; }
-.hk-input-row input:focus { border-bottom-color: #00ff41; }
-.hk-btn { background: #0a0a0a; border: 1px solid #00ff41; color: #00ff41; font-size: 12px; padding: 6px 14px; cursor: pointer; letter-spacing: .08em; border-radius: 0; }
-.hk-btn:hover { background: #00ff4122; }
-.sec-hd { font-size: 11px; color: #00ff4199; letter-spacing: .12em; margin: 1.25rem 0 10px; }
-.sec-hd::before { content: '// '; color: #00ff4144; }
-.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 8px; margin-bottom: 1.25rem; }
-.mcard { background: #0f0f0f; border: 1px solid #00ff4133; padding: 11px 12px; }
-.mcard .mc-label { font-size: 10px; color: #00ff4199; margin-bottom: 5px; letter-spacing: .1em; }
-.mcard .mc-val { font-size: 21px; font-weight: 500; line-height: 1; }
-.mcard .mc-sub { font-size: 10px; color: #00ff4166; margin-top: 3px; }
-.mcard .mc-bar { height: 2px; background: #00ff4122; margin-top: 7px; }
-.mcard .mc-fill { height: 100%; }
-.mcard .mc-src { font-size: 9px; color: #00ff4144; margin-top: 4px; letter-spacing: .06em; }
-.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.25rem; }
-.info-card { background: #0f0f0f; border: 1px solid #00ff4133; padding: 11px 12px; }
-.info-card .ic-label { font-size: 10px; color: #00ff4199; margin-bottom: 5px; letter-spacing: .1em; }
-.info-card .ic-val { font-size: 13px; color: #00ff41; }
-.info-card .ic-sub { font-size: 10px; color: #00ff4166; margin-top: 3px; }
-.log { background: #0f0f0f; border: 1px solid #00ff4133; padding: 10px 12px; margin-bottom: 1.25rem; font-size: 11px; line-height: 1.8; }
-.log-line { color: #00ff4188; }
-.log-line.ok { color: #00ff41; }
-.log-line.err { color: #ff4141; }
-.log-line.warn { color: #ffb700; }
-.log-line.info { color: #00aaff; }
-.scan-line { font-size: 11px; color: #00ff4188; background: #0f1f0f; border: 1px solid #00ff4133; padding: 8px 12px; margin-top: 1rem; }
-.hk-ask-btn { background: #0a0a0a; border: 1px solid #00ff4166; color: #00ff41; font-size: 11px; padding: 7px 14px; cursor: pointer; letter-spacing: .06em; margin-top: 8px; border-radius: 0; }
-.hk-ask-btn:hover { background: #00ff4122; border-color: #00ff41; }
-.empty { text-align: center; padding: 3rem 1rem; color: #00ff4155; font-size: 13px; letter-spacing: .08em; }
-.empty i { font-size: 32px; display: block; margin-bottom: 12px; color: #00ff4133; }
-.loading { font-size: 12px; color: #00ff4188; letter-spacing: .08em; padding: 1rem 0; }
-.loading span { animation: blink 1s step-end infinite; }
-.toggle-btn { background: transparent; border: none; color: #00ff4166; font-size: 11px; cursor: pointer; letter-spacing: .06em; padding: 0; text-decoration: underline; }
-.toggle-btn:hover { color: #00ff41; }
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06070f;
+  --surface:#0e1020;
+  --surface2:#161829;
+  --border:#1e2140;
+  --accent:#6c63ff;
+  --accent2:#ff6584;
+  --accent3:#43e97b;
+  --text:#e8e6ff;
+  --muted:#5a5880;
+  --font-head:'Syne',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+}
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var(--font-body)}
+
+/* BG GRID */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:48px 48px;opacity:.35;pointer-events:none;z-index:0;
+}
+
+.screen{display:none;position:relative;z-index:1}
+.screen.active{display:block}
+
+/* ===== INTRO ===== */
+#s-intro{min-height:100vh;display:none;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1rem;text-align:center}
+#s-intro.active{display:flex}
+
+.intro-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.35);
+  border-radius:99px;padding:5px 14px;font-size:12px;color:#a89fff;
+  font-family:var(--font-head);letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:1.5rem;
+}
+.intro-title{
+  font-family:var(--font-head);font-size:clamp(48px,10vw,96px);font-weight:800;
+  line-height:.95;letter-spacing:-.03em;margin-bottom:1rem;
+  background:linear-gradient(135deg,#fff 0%,#a89fff 50%,#ff6584 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.intro-sub{font-size:16px;color:var(--muted);max-width:420px;line-height:1.6;margin-bottom:2.5rem}
+
+.stat-cards{display:flex;gap:12px;margin-bottom:2.5rem;flex-wrap:wrap;justify-content:center}
+.stat-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:.75rem 1.25rem;text-align:center;min-width:90px;
+}
+.stat-card .sv{font-family:var(--font-head);font-size:24px;font-weight:700;color:var(--accent)}
+.stat-card .sl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+
+.btn-start-iq{
+  background:var(--accent);color:#fff;border:none;border-radius:14px;
+  padding:1rem 2.5rem;font-size:17px;font-weight:600;font-family:var(--font-head);
+  cursor:pointer;transition:all .15s;letter-spacing:.02em;
+  box-shadow:0 0 32px rgba(108,99,255,.4);
+}
+.btn-start-iq:hover{background:#5a52e0;transform:translateY(-2px);box-shadow:0 0 48px rgba(108,99,255,.6)}
+.btn-start-iq:active{transform:scale(.97)}
+
+.category-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:360px;margin:0 auto 2rem}
+.cat-item{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:.65rem .75rem;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);
+}
+.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ===== GAME ===== */
+#s-game{min-height:100vh;padding:1rem;display:none;flex-direction:column}
+#s-game.active{display:flex}
+
+.game-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.g-back{
+  background:var(--surface);border:1px solid var(--border);border-radius:99px;
+  padding:6px 14px;font-size:13px;color:var(--muted);cursor:pointer;
+  font-family:var(--font-body);transition:color .12s;
+}
+.g-back:hover{color:var(--text)}
+.g-num{font-family:var(--font-head);font-size:13px;color:var(--muted)}
+.g-score-live{
+  background:rgba(108,99,255,.15);border:1px solid rgba(108,99,255,.3);
+  border-radius:99px;padding:4px 12px;font-size:13px;font-weight:600;
+  font-family:var(--font-head);color:#a89fff;
+}
+
+/* timer */
+.timer-wrap{margin-bottom:1rem}
+.timer-track{height:5px;background:var(--surface2);border-radius:99px;overflow:hidden;margin-bottom:6px}
+.timer-fill{height:100%;border-radius:99px;background:var(--accent3);transition:width .1s linear}
+.timer-fill.warn{background:#f7c948}
+.timer-fill.danger{background:var(--accent2)}
+.timer-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+
+/* question */
+.q-type-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:99px;padding:3px 10px;font-size:11px;color:var(--muted);
+  font-family:var(--font-head);letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:.75rem;
+}
+.q-box{
+  background:var(--surface);border:1px solid var(--border);border-radius:18px;
+  padding:1.5rem 1.25rem;margin-bottom:1rem;
+}
+.q-main{font-family:var(--font-head);font-size:22px;font-weight:700;line-height:1.4;color:var(--text);text-align:center;margin-bottom:.5rem}
+.q-hint{font-size:13px;color:var(--muted);text-align:center}
+
+/* pattern display */
+.pattern-row{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  flex-wrap:wrap;margin:1rem 0;
+}
+.pattern-cell{
+  width:48px;height:48px;background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-head);font-size:18px;font-weight:700;color:var(--accent);
+}
+.pattern-cell.blank{border-color:var(--accent);color:var(--accent2);border-style:dashed}
+
+/* answers */
+.ans-wrap{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1rem}
+.ans-btn{
+  background:var(--surface);border:1.5px solid var(--border);border-radius:14px;
+  padding:1rem .75rem;cursor:pointer;text-align:center;
+  font-family:var(--font-head);font-size:18px;font-weight:600;color:var(--text);
+  transition:all .12s;min-height:64px;display:flex;align-items:center;justify-content:center;
+  -webkit-tap-highlight-color:transparent;
+}
+.ans-btn:hover:not(:disabled){background:var(--surface2);border-color:var(--accent)}
+.ans-btn:active:not(:disabled){transform:scale(.96)}
+.ans-btn.correct{background:rgba(67,233,123,.1);border-color:var(--accent3);color:var(--accent3)}
+.ans-btn.wrong{background:rgba(255,101,132,.1);border-color:var(--accent2);color:var(--accent2)}
+.ans-btn.reveal{background:rgba(247,201,72,.1);border-color:#f7c948;color:#f7c948}
+
+.fb-wrap{
+  border-radius:12px;padding:.65rem 1rem;text-align:center;
+  font-size:14px;font-weight:500;min-height:44px;
+  display:flex;align-items:center;justify-content:center;margin-bottom:.75rem;
+}
+.fb-ok{background:rgba(67,233,123,.1);color:var(--accent3)}
+.fb-no{background:rgba(255,101,132,.1);color:var(--accent2)}
+.fb-time{background:rgba(247,201,72,.1);color:#f7c948}
+.fb-empty{background:transparent;color:transparent}
+
+.btn-next{
+  display:block;width:100%;padding:.85rem;
+  background:var(--accent);color:#fff;border:none;border-radius:14px;
+  font-size:16px;font-weight:600;font-family:var(--font-head);cursor:pointer;
+  transition:all .12s;
+}
+.btn-next:active{background:#5a52e0;transform:scale(.98)}
+
+/* ===== RESULT ===== */
+#s-result{min-height:100vh;padding:1.5rem 1rem;display:none;flex-direction:column;align-items:center}
+#s-result.active{display:flex}
+
+.iq-circle{
+  width:160px;height:160px;border-radius:50%;
+  border:3px solid var(--accent);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  margin:1.5rem auto 1rem;
+  background:radial-gradient(circle,rgba(108,99,255,.15) 0%,transparent 70%);
+  box-shadow:0 0 48px rgba(108,99,255,.3);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{box-shadow:0 0 48px rgba(108,99,255,.3)}50%{box-shadow:0 0 80px rgba(108,99,255,.5)}}
+.iq-num{font-family:var(--font-head);font-size:56px;font-weight:800;color:#fff;line-height:1}
+.iq-lbl{font-size:12px;color:var(--accent);font-family:var(--font-head);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+
+.iq-category{
+  font-family:var(--font-head);font-size:22px;font-weight:700;
+  text-align:center;margin-bottom:.4rem;
+}
+.iq-desc{font-size:14px;color:var(--muted);text-align:center;max-width:320px;margin:0 auto 1.5rem;line-height:1.6}
+
+/* IQ bar */
+.iq-bar-wrap{width:100%;max-width:400px;margin:0 auto 1.5rem}
+.iq-bar-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:4px;font-family:var(--font-head)}
+.iq-bar-track{height:12px;background:var(--surface2);border-radius:99px;overflow:hidden;position:relative}
+.iq-bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#43e97b,#6c63ff,#ff6584);transition:width 1s ease}
+.iq-marker{position:absolute;top:-4px;width:3px;height:20px;background:#fff;border-radius:2px;transition:left 1s ease}
+
+.stat-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  width:100%;max-width:400px;margin:0 auto 1.5rem;
+}
+.stat-box{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:.85rem .5rem;text-align:center;
+}
+.stat-box .sv{font-family:var(--font-head);font-size:22px;font-weight:700}
+.stat-box .sl{font-size:11px;color:var(--muted);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
+.sv-ok{color:var(--accent3)}.sv-no{color:var(--accent2)}.sv-t{color:var(--accent)}
+
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:400px;margin:0 auto}
+.btn-home2{
+  padding:.85rem;background:var(--surface);border:1.5px solid var(--border);
+  border-radius:14px;font-size:14px;font-weight:600;font-family:var(--font-head);
+  cursor:pointer;color:var(--text);transition:all .12s;
+}
+.btn-retry{
+  padding:.85rem;background:var(--accent);color:#fff;border:none;
+  border-radius:14px;font-size:14px;font-weight:600;font-family:var(--font-head);
+  cursor:pointer;transition:all .12s;
+}
+.btn-retry:active{background:#5a52e0}
+
+/* ===== SHARE CARD ===== */
+.share-card{
+  width:100%;max-width:400px;
+  background:var(--surface);border:1px solid var(--border);border-radius:18px;
+  padding:1.25rem;margin:0 auto 1.25rem;text-align:center;
+}
+.share-title{font-family:var(--font-head);font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem}
+.share-text{font-family:var(--font-head);font-size:17px;font-weight:700;color:var(--text);line-height:1.5}
 </style>
+</head>
+<body>
 
-<div class="hk" id="app">
-<h2 class="sr-only">SEO Authority Checker — Moz API + IPInfo Integration</h2>
+<!-- ===== INTRO ===== -->
+<div id="s-intro" class="screen active">
+  <div class="intro-badge">🧠 IQ Test Online</div>
+  <h1 class="intro-title">Berapa<br>IQ-mu?</h1>
+  <p class="intro-sub">20 soal logika, pola angka, deret, dan penalaran. Hasil instan dengan skor IQ lengkap.</p>
 
-<div class="hk-topbar">
-  <div class="hk-logo"><i class="ti ti-terminal-2" aria-hidden="true"></i></div>
-  <div>
-    <div class="hk-title">SEO_AUTHORITY_CHECKER <span>v3.0 [LIVE API]</span> <span class="hk-cursor"></span></div>
-    <div style="font-size:10px;color:#00ff4144;letter-spacing:.08em;margin-top:2px;">moz api + ipinfo.io — real data mode</div>
+  <div class="stat-cards">
+    <div class="stat-card"><div class="sv">20</div><div class="sl">Soal</div></div>
+    <div class="stat-card"><div class="sv">20s</div><div class="sl">Per Soal</div></div>
+    <div class="stat-card"><div class="sv">IQ</div><div class="sl">Score</div></div>
   </div>
+
+  <div class="category-grid">
+    <div class="cat-item"><div class="cat-dot" style="background:#6c63ff"></div>Pola Angka</div>
+    <div class="cat-item"><div class="cat-dot" style="background:#43e97b"></div>Deret Logika</div>
+    <div class="cat-item"><div class="cat-dot" style="background:#ff6584"></div>Penalaran</div>
+    <div class="cat-item"><div class="cat-dot" style="background:#f7c948"></div>Spasial</div>
+  </div>
+
+  <button class="btn-start-iq" onclick="startIQ()">Mulai Tes IQ ▶</button>
 </div>
 
-<div class="api-config" id="apiConfig">
-  <div class="api-config-title">api key configuration</div>
-  <div class="api-row">
-    <span class="api-label">MOZ ACCESS ID</span>
-    <input type="text" id="mozId" placeholder="mozscape-xxxxxxxxxxxxxxxx" oninput="updateStatus()" />
-    <span class="api-status st-unset" id="mozIdSt">UNSET</span>
+<!-- ===== GAME ===== -->
+<div id="s-game" class="screen">
+  <div class="game-top">
+    <button class="g-back" onclick="if(confirm('Keluar dari tes?'))goIntro()">← Keluar</button>
+    <span class="g-num" id="g-num">1 / 20</span>
+    <span class="g-score-live" id="g-score">0 poin</span>
   </div>
-  <div class="api-row">
-    <span class="api-label">MOZ SECRET KEY</span>
-    <input type="password" id="mozSecret" placeholder="••••••••••••••••••••••••" oninput="updateStatus()" />
-    <span class="api-status st-unset" id="mozSecSt">UNSET</span>
+  <div class="timer-wrap">
+    <div class="timer-track"><div class="timer-fill" id="t-fill"></div></div>
+    <div class="timer-label"><span id="t-label">20s</span><span id="t-diff"></span></div>
   </div>
-  <div class="api-row">
-    <span class="api-label">IPINFO TOKEN</span>
-    <input type="text" id="ipToken" placeholder="optional — gratis tanpa token" oninput="updateStatus()" />
-    <span class="api-status st-set" id="ipSt">OPTIONAL</span>
+  <div class="q-type-badge" id="q-type-badge">🔢 Pola Angka</div>
+  <div class="q-box">
+    <div class="q-main" id="q-main"></div>
+    <div class="pattern-row" id="pattern-row" style="display:none"></div>
+    <div class="q-hint" id="q-hint"></div>
   </div>
-  <div style="margin-top:10px;display:flex;gap:12px;align-items:center;">
-    <button class="toggle-btn" onclick="toggleConfig()">[ sembunyikan config ]</button>
-    <span style="font-size:10px;color:#00ff4144;">
-      daftar gratis: <span style="color:#00aaff">moz.com/products/api</span>
-    </span>
-  </div>
-</div>
-<div id="configHidden" style="display:none;margin-bottom:1.25rem;">
-  <button class="toggle-btn" onclick="toggleConfig()">[ tampilkan api config ]</button>
+  <div class="ans-wrap" id="ans-wrap"></div>
+  <div class="fb-wrap fb-empty" id="fb"></div>
+  <button class="btn-next" id="btn-next" style="display:none" onclick="nextQ()">Soal Berikutnya →</button>
 </div>
 
-<div class="hk-input-row">
-  <span class="hk-prompt">root@seo:~$</span>
-  <input type="text" id="domInput" placeholder="scan target.com..." />
-  <button class="hk-btn" onclick="analyze()"><i class="ti ti-radar" aria-hidden="true"></i> SCAN</button>
-</div>
-
-<div id="main">
-  <div class="empty">
-    <i class="ti ti-terminal" aria-hidden="true"></i>
-    set api keys lalu masukkan domain<span class="hk-cursor"></span>
+<!-- ===== RESULT ===== -->
+<div id="s-result" class="screen">
+  <div class="intro-badge">🧠 Hasil Tes IQ</div>
+  <div class="iq-circle">
+    <div class="iq-num" id="r-iq">0</div>
+    <div class="iq-lbl">IQ Score</div>
   </div>
-</div>
+  <div class="iq-category" id="r-cat"></div>
+  <div class="iq-desc" id="r-desc"></div>
+
+  <div class="iq-bar-wrap">
+    <div class="iq-bar-labels"><span>70</span><span>85</span><span>100</span><span>115</span><span>130</span><span>145</span></div>
+    <div class="iq-bar-track">
+      <div class="iq-bar-fill" id="r-bar" style="width:0%"></div>
+      <div class="iq-marker" id="r-marker" style="left:0%"></div>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-box"><div class="sv sv-ok" id="r-correct">0</div><div class="sl">Benar</div></div>
+    <div class="stat-box"><div class="sv sv-no" id="r-wrong">0</div><div class="sl">Salah</div></div>
+    <div class="stat-box"><div class="sv sv-t" id="r-time">0s</div><div class="sl">Waktu</div></div>
+  </div>
+
+  <div class="share-card">
+    <div class="share-title">📤 Bagikan Hasilmu</div>
+    <div class="share-text" id="r-share"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn-home2" onclick="goIntro()">🏠 Menu</button>
+    <button class="btn-retry" onclick="startIQ()">Ulangi Tes ↺</button>
+  </div>
 </div>
 
 <script>
-document.documentElement.style.background = '#0a0a0a';
-document.body.style.background = '#0a0a0a';
-document.body.style.margin = '0';
+const QS = [
+  // Pola angka
+  {type:'🔢 Pola Angka',q:'2, 4, 8, 16, ?',hint:'Temukan polanya',a:['24','32','28','30'],c:1},
+  {type:'🔢 Pola Angka',q:'1, 1, 2, 3, 5, 8, ?',hint:'Deret Fibonacci',a:['11','12','13','14'],c:2},
+  {type:'🔢 Pola Angka',q:'3, 6, 11, 18, 27, ?',hint:'+3, +5, +7, +9...',a:['36','37','38','39'],c:2},
+  {type:'🔢 Pola Angka',q:'100, 50, 25, 12.5, ?',hint:'Dibagi berapa?',a:['6','6.25','5','7'],c:1},
+  {type:'🔢 Pola Angka',q:'7, 14, 28, 56, ?',hint:'Dikalikan berapa?',a:['96','112','100','108'],c:1},
+  // Deret logika
+  {type:'🧩 Deret Logika',q:'A, C, E, G, ?',hint:'Huruf-huruf yang dilewati',a:['H','I','J','K'],c:1},
+  {type:'🧩 Deret Logika',q:'Z, X, V, T, ?',hint:'Mundur 2 huruf',a:['R','S','Q','P'],c:0},
+  {type:'🧩 Deret Logika',q:'1, 4, 9, 16, 25, ?',hint:'Bilangan kuadrat',a:['30','36','32','35'],c:1},
+  {type:'🧩 Deret Logika',q:'2, 6, 12, 20, 30, ?',hint:'n×(n+1)',a:['40','42','44','46'],c:1},
+  {type:'🧩 Deret Logika',q:'5, 10, 20, 40, ?',hint:'Kelipatan 2',a:['60','70','80','90'],c:2},
+  // Penalaran
+  {type:'💡 Penalaran',q:'Jika semua A adalah B, dan semua B adalah C, maka?',hint:'Silogisme logika',a:['Semua C adalah A','Semua A adalah C','Tidak ada hubungan','Sebagian A adalah C'],c:1},
+  {type:'💡 Penalaran',q:'Ayah dari ayahku adalah?',hint:'Hubungan keluarga',a:['Paman','Kakak','Kakek','Abang'],c:2},
+  {type:'💡 Penalaran',q:'3 jam sebelum pukul 15.00 adalah?',hint:'Hitung mundur',a:['11.00','12.00','13.00','14.00'],c:1},
+  {type:'💡 Penalaran',q:'Buku ada di rak. Rak ada di kamar. Kamar ada di rumah. Maka buku ada di?',hint:'Transitif',a:['Rak saja','Kamar saja','Rumah','Toko'],c:2},
+  {type:'💡 Penalaran',q:'Jika PANAS = DINGIN, SIANG = MALAM, maka HIDUP = ?',hint:'Antonim',a:['Sehat','Mati','Tidur','Bahagia'],c:1},
+  // Matematika logika
+  {type:'🔣 Matematika',q:'Berapa nilai x? 2x + 6 = 18',hint:'Aljabar dasar',a:['4','5','6','7'],c:2},
+  {type:'🔣 Matematika',q:'Jika 5 + 3 = 28, 9 + 1 = 810, maka 7 + 2 = ?',hint:'Pola tersembunyi: a×b dan a-b',a:['59','14','95','49'],c:1},
+  {type:'🔣 Matematika',q:'Rata-rata dari 10, 20, 30, 40, 50 adalah?',hint:'Jumlah dibagi banyak data',a:['25','30','35','40'],c:1},
+  {type:'🔣 Matematika',q:'1/2 + 1/4 + 1/8 = ?',hint:'Samakan penyebut',a:['3/4','7/8','5/8','1'],c:1},
+  {type:'🔣 Matematika',q:'Sebuah persegi panjang 8×6. Luasnya?',hint:'p × l',a:['28','42','48','56'],c:2},
+];
 
-function toggleConfig() {
-  const cfg = document.getElementById('apiConfig');
-  const hidden = document.getElementById('configHidden');
-  if (cfg.style.display === 'none') { cfg.style.display = ''; hidden.style.display = 'none'; }
-  else { cfg.style.display = 'none'; hidden.style.display = 'block'; }
+const IQ_TABLE = [
+  {min:20,max:20,iq:145,cat:'Genius',desc:'Luar biasa! Kamu termasuk kelompok genius. Kemampuan kognitifmu sangat jauh di atas rata-rata.',color:'#6c63ff'},
+  {min:18,max:19,iq:135,cat:'Sangat Superior',desc:'Kemampuan intelektual kamu sangat tinggi. Top 2% populasi dunia!',color:'#6c63ff'},
+  {min:16,max:17,iq:125,cat:'Superior',desc:'Kamu memiliki kecerdasan di atas rata-rata yang signifikan. Sangat bagus!',color:'#43e97b'},
+  {min:14,max:15,iq:115,cat:'Di Atas Rata-rata',desc:'Kecerdasanmu berada di atas rata-rata. Terus asah kemampuanmu!',color:'#43e97b'},
+  {min:11,max:13,iq:105,cat:'Rata-rata Atas',desc:'Kamu berada tepat di atas garis rata-rata populasi umum.',color:'#f7c948'},
+  {min:8,max:10,iq:95,cat:'Rata-rata',desc:'Kecerdasanmu berada di kisaran rata-rata populasi umum.',color:'#f7c948'},
+  {min:5,max:7,iq:85,cat:'Di Bawah Rata-rata',desc:'Terus belajar dan latihan. Kecerdasan bisa diasah dengan usaha!',color:'#ff6584'},
+  {min:0,max:4,iq:75,cat:'Perlu Latihan',desc:'Jangan menyerah! Dengan latihan rutin, kemampuanmu pasti meningkat.',color:'#ff6584'},
+];
+
+const TLIMIT = 20;
+let qi=0, score=0, correct=0, wrong=0, totalTime=0, timer=null, answered=false, timeLeft=0;
+let shuffled=[];
+
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 }
 
-function updateStatus() {
-  const mozId = document.getElementById('mozId').value.trim();
-  const mozSec = document.getElementById('mozSecret').value.trim();
-  const idSt = document.getElementById('mozIdSt');
-  const secSt = document.getElementById('mozSecSt');
-  idSt.textContent = mozId ? 'SET' : 'UNSET';
-  idSt.className = 'api-status ' + (mozId ? 'st-set' : 'st-unset');
-  secSt.textContent = mozSec ? 'SET' : 'UNSET';
-  secSt.className = 'api-status ' + (mozSec ? 'st-set' : 'st-unset');
+function goIntro(){clearInterval(timer);show('s-intro')}
+
+function startIQ(){
+  shuffled=shuffle(QS).slice(0,20);
+  qi=0;score=0;correct=0;wrong=0;totalTime=0;
+  show('s-game');renderQ();
 }
 
-function addLog(container, text, type='log-line') {
-  const line = document.createElement('div');
-  line.className = 'log-line ' + type;
-  const ts = new Date().toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  line.textContent = `[${ts}] ${text}`;
-  container.appendChild(line);
+function renderQ(){
+  answered=false;
+  const q=shuffled[qi];
+  document.getElementById('g-num').textContent=`${qi+1} / 20`;
+  document.getElementById('g-score').textContent=`${score} poin`;
+  document.getElementById('q-type-badge').textContent=q.type;
+  document.getElementById('q-main').textContent=q.q;
+  document.getElementById('q-hint').textContent=q.hint;
+  document.getElementById('btn-next').style.display='none';
+  const fb=document.getElementById('fb');fb.textContent='';fb.className='fb-wrap fb-empty';
+
+  // pattern row - hide for now (text-based questions)
+  document.getElementById('pattern-row').style.display='none';
+
+  // shuffle answers
+  const sh=q.a.map((a,i)=>({a,i})).sort(()=>Math.random()-.5);
+  document.getElementById('ans-wrap').innerHTML=sh.map(({a,i})=>
+    `<button class="ans-btn" onclick="checkAns(this,${i},${q.c})">${a}</button>`
+  ).join('');
+
+  startTimer();
 }
 
-function getColor(s) { return s >= 70 ? '#00ff41' : s >= 45 ? '#ffb700' : '#ff4141'; }
-
-function seededRand(seed) {
-  let s = seed;
-  return () => { s = (s*1664525+1013904223)&0xffffffff; return (s>>>0)/0xffffffff; };
+function startTimer(){
+  clearInterval(timer);timeLeft=TLIMIT;
+  const fill=document.getElementById('t-fill'),lbl=document.getElementById('t-label');
+  fill.style.width='100%';fill.className='timer-fill';lbl.textContent=timeLeft+'s';
+  document.getElementById('t-diff').textContent=shuffled[qi].type;
+  timer=setInterval(()=>{
+    timeLeft--;totalTime++;
+    lbl.textContent=timeLeft+'s';
+    const p=(timeLeft/TLIMIT)*100;
+    fill.style.width=p+'%';
+    if(p<=30)fill.className='timer-fill danger';
+    else if(p<=60)fill.className='timer-fill warn';
+    if(timeLeft<=0){clearInterval(timer);timeUp();}
+  },1000);
 }
-function hashStr(str) {
-  let h = 0;
-  for (let i=0;i<str.length;i++) h = (Math.imul(31,h)+str.charCodeAt(i))|0;
-  return Math.abs(h);
+
+function timeUp(){
+  if(answered)return;answered=true;
+  const q=shuffled[qi];
+  document.querySelectorAll('.ans-btn').forEach(b=>{
+    b.disabled=true;
+    const o=parseInt(b.getAttribute('onclick').match(/\d+/g)[0]);
+    if(o===q.c)b.className='ans-btn reveal';
+  });
+  const fb=document.getElementById('fb');
+  fb.textContent='⏰ Waktu habis! Jawaban benar ditandai.';fb.className='fb-wrap fb-time';
+  wrong++;document.getElementById('btn-next').style.display='block';
 }
 
-async function analyze() {
-  const raw = document.getElementById('domInput').value.trim().toLowerCase().replace(/https?:\/\//,'').replace(/\/.*/,'');
-  if (!raw) return;
-  const domain = raw;
-  const mozId = document.getElementById('mozId').value.trim();
-  const mozSec = document.getElementById('mozSecret').value.trim();
-  const ipToken = document.getElementById('ipToken').value.trim();
-
-  const main = document.getElementById('main');
-  main.innerHTML = `<div class="log" id="logBox"></div>`;
-  const logBox = document.getElementById('logBox');
-
-  addLog(logBox, `initiating scan for: ${domain}`, 'ok');
-
-  let mozData = null;
-  let ipData = null;
-
-  if (mozId && mozSec) {
-    addLog(logBox, 'connecting to Moz API...', 'info');
-    try {
-      const expires = Math.floor(Date.now()/1000) + 300;
-      const sigStr = `${mozId}\n${expires}`;
-      const enc = new TextEncoder();
-      const key = await crypto.subtle.importKey('raw', enc.encode(mozSec), {name:'HMAC',hash:'SHA-1'}, false, ['sign']);
-      const sig = await crypto.subtle.sign('HMAC', key, enc.encode(sigStr));
-      const b64 = btoa(String.fromCharCode(...new Uint8Array(sig)));
-      const authStr = btoa(`${mozId}:${b64}`);
-
-      const resp = await fetch(`https://lsapi.seomoz.com/v2/url_metrics`, {
-        method: 'POST',
-        headers: { 'Authorization': `Basic ${authStr}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ targets: [domain] })
-      });
-
-      if (resp.ok) {
-        const json = await resp.json();
-        mozData = json.results?.[0] || null;
-        addLog(logBox, `Moz API response OK — DA: ${Math.round(mozData?.domain_authority||0)}, PA: ${Math.round(mozData?.page_authority||0)}`, 'ok');
-      } else {
-        addLog(logBox, `Moz API error ${resp.status} — fallback ke simulasi`, 'err');
-      }
-    } catch(e) {
-      addLog(logBox, `Moz API failed: ${e.message} — fallback ke simulasi`, 'err');
-    }
+function checkAns(btn,orig,ci){
+  if(answered)return;answered=true;clearInterval(timer);totalTime+=TLIMIT-timeLeft;
+  const ok=orig===ci;
+  document.querySelectorAll('.ans-btn').forEach(b=>{
+    b.disabled=true;
+    const o=parseInt(b.getAttribute('onclick').match(/\d+/g)[0]);
+    if(o===ci)b.className='ans-btn correct';
+  });
+  const fb=document.getElementById('fb');
+  if(ok){
+    const pts=Math.max(5, Math.round((timeLeft/TLIMIT)*20));
+    score+=pts;correct++;
+    fb.textContent=`✅ Benar! +${pts} poin`;fb.className='fb-wrap fb-ok';
   } else {
-    addLog(logBox, 'Moz API key tidak diset — menggunakan simulasi', 'warn');
+    btn.className='ans-btn wrong';wrong++;
+    fb.textContent='❌ Salah. Jawaban benar ditandai.';fb.className='fb-wrap fb-no';
   }
-
-  addLog(logBox, 'fetching IP & hosting info via IPInfo...', 'info');
-  try {
-    const tokenParam = ipToken ? `?token=${ipToken}` : '';
-    const resp = await fetch(`https://ipinfo.io/${domain.replace(/^www\./,'')}${tokenParam}`);
-    if (resp.ok) {
-      ipData = await resp.json();
-      addLog(logBox, `IPInfo OK — IP: ${ipData.ip}, org: ${ipData.org||'unknown'}`, 'ok');
-    } else {
-      addLog(logBox, `IPInfo error ${resp.status}`, 'err');
-    }
-  } catch(e) {
-    addLog(logBox, `IPInfo failed: ${e.message}`, 'err');
-  }
-
-  addLog(logBox, 'rendering results...', 'info');
-
-  const seed = hashStr(domain);
-  const r = seededRand(seed);
-  const da = mozData ? Math.round(mozData.domain_authority||0) : Math.round(20+r()*75);
-  const pa = mozData ? Math.round(mozData.page_authority||0) : Math.max(10,Math.min(100,Math.round(da-10+r()*20)));
-  const spam = mozData ? Math.round((mozData.spam_score||0)*100) : Math.round(r()*35);
-  const bl = mozData ? (mozData.linking_root_domains||0) : Math.round(500+r()*200000);
-  const totalBL = mozData ? (mozData.inbound_links||0) : Math.round(bl*12);
-
-  const isMozReal = !!mozData;
-  const isIPReal = !!ipData;
-
-  const spamColor = spam<15?'#00ff41':spam<30?'#ffb700':'#ff4141';
-  const spamStatus = spam<15?'SAFE':spam<30?'MODERATE':'DANGER';
-
-  const ip = ipData?.ip || 'N/A';
-  const org = ipData?.org || 'unknown';
-  const city = ipData?.city || '?';
-  const country = ipData?.country || '?';
-  const region = ipData?.region || '?';
-  const timezone = ipData?.timezone || '?';
-  const hostname = ipData?.hostname || domain;
-
-  const srcTag = (real, label) => real
-    ? `<span style="font-size:9px;color:#00ff41;letter-spacing:.05em"> [${label}]</span>`
-    : `<span style="font-size:9px;color:#ffb700;letter-spacing:.05em"> [sim]</span>`;
-
-  main.innerHTML += `
-    <div class="sec-hd">authority metrics ${srcTag(isMozReal,'moz api')}</div>
-    <div class="metrics-grid">
-      ${mc('domain authority', da, '/100', '', da, getColor(da), true)}
-      ${mc('page authority', pa, '/100', '', pa, getColor(pa), true)}
-      ${mc('spam score', spam+'%', '', spamStatus, spam, spamColor, true)}
-      ${mc('linking domains', fmtNum(bl), '', 'root domains', null, '#aa88ff', false)}
-      ${mc('total backlinks', fmtNum(totalBL), '', 'inbound links', null, '#534AB7', false)}
-    </div>
-
-    <div class="sec-hd">server & hosting info ${srcTag(isIPReal,'ipinfo')}</div>
-    <div class="info-grid">
-      ${ic('IP ADDRESS', ip, '')}
-      ${ic('HOSTNAME', hostname, '')}
-      ${ic('ORG / ASN', org, '')}
-      ${ic('LOKASI', city+', '+country, region)}
-      ${ic('TIMEZONE', timezone, '')}
-      ${ic('COUNTRY CODE', country, 'server location')}
-    </div>
-
-    <button class="hk-ask-btn" onclick="sendPrompt('Berikan rekomendasi strategi backlink untuk domain ${domain} berdasarkan DA ${da}, PA ${pa}, spam score ${spam}%, dan server di ${country}')">
-      > MINTA REKOMENDASI STRATEGI ↗
-    </button>
-
-    <div class="scan-line">
-      <i class="ti ti-info-circle" aria-hidden="true" style="margin-right:6px"></i>
-      ${isMozReal ? '[MOZ] data real dari Moz API' : '[SIM] DA/PA simulasi — set Moz API key untuk data real'} &nbsp;|&nbsp;
-      ${isIPReal ? '[IPINFO] data real' : '[IPINFO] gagal fetch'}
-    </div>
-  `;
+  document.getElementById('g-score').textContent=`${score} poin`;
+  document.getElementById('btn-next').style.display='block';
 }
 
-function mc(label, val, suffix, sub, barVal, color, showBar) {
-  const bar = showBar && barVal !== null ? `<div class="mc-bar"><div class="mc-fill" style="width:${Math.min(barVal,100)}%;background:${color}"></div></div>` : '';
-  return `<div class="mcard">
-    <div class="mc-label">${label}</div>
-    <div class="mc-val" style="color:${color}">${val}<span style="font-size:12px;font-weight:400;color:#00ff4155">${suffix}</span></div>
-    ${sub?`<div class="mc-sub">${sub}</div>`:''}
-    ${bar}
-  </div>`;
+function nextQ(){
+  qi++;
+  if(qi>=20)showResult();
+  else renderQ();
 }
 
-function ic(label, val, sub) {
-  return `<div class="info-card">
-    <div class="ic-label">${label}</div>
-    <div class="ic-val">${val||'N/A'}</div>
-    ${sub?`<div class="ic-sub">${sub}</div>`:''}
-  </div>`;
-}
+function showResult(){
+  clearInterval(timer);
+  // Calculate IQ
+  const row=IQ_TABLE.find(r=>correct>=r.min&&correct<=r.max)||IQ_TABLE[IQ_TABLE.length-1];
+  const iq=row.iq;
 
-function fmtNum(n) {
-  if (n >= 1000000) return (n/1000000).toFixed(1)+'M';
-  if (n >= 1000) return (n/1000).toFixed(1)+'K';
-  return (n||0).toString();
-}
+  document.getElementById('r-iq').textContent=iq;
+  document.getElementById('r-cat').textContent=row.cat;
+  document.getElementById('r-cat').style.color=row.color;
+  document.getElementById('r-desc').textContent=row.desc;
+  document.getElementById('r-correct').textContent=correct;
+  document.getElementById('r-wrong').textContent=20-correct;
+  document.getElementById('r-time').textContent=totalTime+'s';
 
-document.getElementById('domInput').addEventListener('keydown', e => { if(e.key==='Enter') analyze(); });
+  // IQ bar (range 70-145)
+  const pct=Math.min(100,Math.max(0,((iq-70)/(145-70))*100));
+  setTimeout(()=>{
+    document.getElementById('r-bar').style.width=pct+'%';
+    document.getElementById('r-marker').style.left=`calc(${pct}% - 1.5px)`;
+  },300);
+
+  // Share text
+  document.getElementById('r-share').textContent=
+    `🧠 Skor IQ saya: ${iq} (${row.cat})\n✅ ${correct}/20 benar dalam ${totalTime}s\nCoba juga di gentonggame.pages.dev`;
+
+  show('s-result');
+
+  // Animate IQ number
+  let cur=70;
+  const target=iq;
+  const step=Math.ceil((target-cur)/30);
+  const anim=setInterval(()=>{
+    cur+=step;
+    if(cur>=target){cur=target;clearInterval(anim);}
+    document.getElementById('r-iq').textContent=cur;
+  },30);
+}
 </script>
+</body>
+</html>
