@@ -15,6 +15,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
+/* ===== ADS HEADER ===== */
+.ads-header{
+  position:relative;z-index:10;width:100%;
+  display:flex;justify-content:center;align-items:center;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:6px 0;overflow:hidden;
+}
+.ads-header iframe,.ads-header ins,.ads-header>*{
+  max-width:100% !important;
+}
+/* Mobile: scale down 728px banner to fit screen */
+@media(max-width:767px){
+  .ads-header{
+    padding:4px 0;
+    min-height:56px;
+  }
+  .ads-header-inner{
+    transform-origin:top center;
+    /* will be set by JS */
+  }
+}
+</style>
+<style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#07080f;
@@ -322,6 +345,46 @@ body::after{
 </style>
 </head>
 <body>
+
+<!-- ===== ADS HEADER ===== -->
+<div class="ads-header">
+  <div class="ads-header-inner" id="ads-header-inner">
+    <script>
+      atOptions = {
+        'key' : '4998e547fa966cf16147ab85c17a9bba',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+    <script src="https://enteringlacquergiant.com/4998e547fa966cf16147ab85c17a9bba/invoke.js"></script>
+  </div>
+</div>
+<script>
+// Scale 728px banner for mobile
+(function(){
+  function scaleAd(){
+    var inner=document.getElementById('ads-header-inner');
+    if(!inner)return;
+    var vw=window.innerWidth;
+    if(vw<740){
+      var scale=vw/740;
+      inner.style.transform='scale('+scale+')';
+      inner.style.transformOrigin='top center';
+      inner.style.display='block';
+      inner.style.width='728px';
+      document.querySelector('.ads-header').style.height=Math.round(90*scale+8)+'px';
+    } else {
+      inner.style.transform='';
+      inner.style.width='';
+      document.querySelector('.ads-header').style.height='';
+    }
+  }
+  window.addEventListener('load',scaleAd);
+  window.addEventListener('resize',scaleAd);
+})();
+</script>
 
 <!-- ===== INTRO ===== -->
 <div id="s-intro" class="screen active">
@@ -907,5 +970,23 @@ function showResult(){
   },25);
 }
 </script>
+
+<!-- ===== FOOTER TRACKER ===== -->
+<div style="position:relative;z-index:1;text-align:center;padding:10px 0 4px;opacity:.5">
+  <!-- Histats.com START (async) -->
+  <script type="text/javascript">
+    var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,5025051,4,0,0,0,00010000']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+      var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+      hs.src = ('//s10.histats.com/js15_as.js');
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();
+  </script>
+  <noscript><a href="/" target="_blank"><img src="//sstatic1.histats.com/0.gif?5025051&101" alt="" border="0"></a></noscript>
+  <!-- Histats.com END -->
+</div>
 </body>
 </html>
